@@ -2,8 +2,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-//var search = require('./npmOps.js').search;
-
 var app = express();
 
 app.use(bodyParser.json());
