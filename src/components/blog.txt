@@ -1,0 +1,7 @@
+* Blog
+  * Left side
+    - List of posts or Post page
+  * Right side
+    - Short blogger profile
+    - Archives
+    - Categories/Tags
