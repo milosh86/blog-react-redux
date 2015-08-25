@@ -8,6 +8,7 @@
   "dependencies": {
     "babel-runtime": "^5.7.0",
     "fp-es6": "^0.1.0",
+    "moment": "^2.10.6",
     "react": "0.13.1"
   },
   "devDependencies": {
