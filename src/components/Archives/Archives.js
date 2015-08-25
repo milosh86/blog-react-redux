@@ -19,7 +19,7 @@ class Archives extends Component {
   render() {
     let items = this._generateArchItems(this.props.posts)
       .map(item =>
-        <div className="blog-archive--item">
+        <div className="blog-archives--item">
           <a href="#" onClick={() => this.props.onItemClick(item)}>
             {item}
           </a>
