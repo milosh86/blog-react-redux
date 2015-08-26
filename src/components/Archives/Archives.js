@@ -1,5 +1,6 @@
 import './Archives.css';
 import moment from 'moment';
+import Filter from '../Filter/Filter.js'
 import React, {Component} from 'react';
 
 class Archives extends Component {
@@ -17,20 +18,14 @@ class Archives extends Component {
   }
 
   render() {
-    let items = this._generateArchItems(this.props.posts)
-      .map(item =>
-        <div className="blog-archives--item">
-          <a href="#" onClick={() => this.props.onItemClick(item)}>
-            {item}
-          </a>
-        </div>);
+    let items = this._generateArchItems(this.props.posts);
 
     // add profile picture optionally
     return (
-      <div className="blog-archives">
-        <div className="blog-archives--title">{this.props.title}</div>
-        <div className="blog-archives--list">{items}</div>
-      </div>
+      <Filter
+        title={this.props.title}
+        items={items}
+        onItemClick={this.props.onItemClick} />
     );
   }
 }

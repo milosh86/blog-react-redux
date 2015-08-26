@@ -1,5 +1,6 @@
 import './Post.css';
 import React, {Component} from 'react';
+import moment from 'moment';
 
 class Post extends Component {
   constructor(props) {
@@ -7,12 +8,18 @@ class Post extends Component {
   }
 
   render() {
+    let footer = this.props.short ? '' : <div>Footer</div>;
+
     return (
       <div className="blog-post">
-        <div className="blog-post--date">{this.props.date.toString()}</div>
-        <div className="blog-post--title">{this.props.title}</div>
+        <div className="blog-post--header">
+          <div className="blog-post--date">{moment(this.props.date).format('LLLL')}</div>
+          <div className="blog-post--comments"><a href="#">Comments({this.props.comments.length})</a></div>
+        </div>
+        <hr />
+        <div className="blog-post--title"><a href='#'>{this.props.title}</a></div>
         <div className="blog-post--body">{this.props.body}</div>
-        <div className="blog-post--footer">Number of comments: {this.props.comments.length}</div>
+        {footer}
       </div>
     );
   }
@@ -32,16 +39,18 @@ Post.propTypes = {
         author: React.PropTypes.string,
         body: React.PropTypes.string
       }).isRequired
-    )
+    ),
+    short: React.PropTypes.bool
 };
 Post.defaultProps = {
   date: new Date(),
   title: 'Default blog post',
   author: 'M.Dz.',
-  body: 'Hello, this is some default post...',
+  body: 'Hello, this is some default post.Hello, this is some default postHello, this is some default postHello, this is some default postHello, this is some default postHello, this is some default postHello, this is some default post..',
   permalink: 'default-post',
   tags: ['default tag'],
-  comments: []
+  comments: [],
+  short: false
 };
 
 export default Post;

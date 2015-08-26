@@ -1,5 +1,6 @@
 import './Categories.css';
 import React, {Component} from 'react';
+import Filter from '../Filter/Filter.js';
 
 class Categories extends Component {
   constructor(props) {
@@ -7,20 +8,14 @@ class Categories extends Component {
   }
 
   render() {
-    let items = this.props.tags
-      .map(tag =>
-        <div className="blog-categories--item">
-          <a href="#" onClick={() => this.props.onItemClick(tag)}>
-            {tag}
-          </a>
-        </div>);
+    let items = this.props.tags;
 
     // add profile picture optionally
     return (
-      <div className="blog-categories">
-        <div className="blog-categories--title">{this.props.title}</div>
-        <div className="blog-categories--list">{items}</div>
-      </div>
+      <Filter
+        title={this.props.title}
+        items={items}
+        onItemClick={this.props.onItemClick} />
     );
   }
 }
@@ -33,7 +28,7 @@ Categories.propTypes = {
 };
 Categories.defaultProps = {
   title: 'Categories',
-  tags: ['all', 'react', 'JS', 'redux', 'node.js'],
+  tags: ['all', 'react', 'JS', 'redux', 'node.js', 'node.js'],
   onItemClick: () => {}
 };
 

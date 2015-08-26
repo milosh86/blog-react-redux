@@ -1,5 +1,37 @@
 .blog-post {
-    border-style: solid;
     margin: 10px;
     padding: 5px;
+}
+
+.blog-post--title a{
+    font-size: 24px;
+    font-weight: bold;
+    color: #1f95b4;
+    text-decoration: none;
+}
+
+.blog-post--title {
+    margin-bottom: 10px;
+}
+
+.blog-post--body {
+    font-size: 14px;
+}
+.blog-post--header {
+    overflow: auto;
+}
+.blog-post--date {
+    font-size: 12px;
+    font-weight: bold;
+    float: left;
+}
+.blog-post--comments {
+    font-size: 12px;
+    font-weight: bold;
+    float: right;
+    margin-right: 10px;
+}
+.blog-post--comments a {
+    text-decoration: none;
+    color: #1f95b4;
 }

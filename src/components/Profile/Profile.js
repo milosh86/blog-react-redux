@@ -6,11 +6,18 @@ class Profile extends Component {
     super(props);
   }
 
+  //add profile picture optionally
   render() {
     return (
       <div className="blog-profile">
-         //add profile picture optionally
-        <div className="blog-profile--name">{this.props.name}</div>
+        <div className="blog-profile--name">
+          <div>
+            {this.props.firstName.toUpperCase()}
+          </div>
+          <div>
+            {this.props.lastName.toUpperCase()}
+          </div>
+        </div>
         <div className="blog-profile--punchline">{this.props.punchLine}</div>
       </div>
     );
@@ -23,7 +30,8 @@ Profile.propTypes = {
   punchLine: React.PropTypes.string
 };
 Profile.defaultProps = {
-  name: 'Default Name',
+  firstName: 'FirstName',
+  lastName: 'LastName',
   punchLine: 'Default Developer from Belgrade'
 };
 

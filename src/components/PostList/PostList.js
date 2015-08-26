@@ -8,7 +8,7 @@ class PostList extends Component {
   }
 
   render() {
-    let posts = this.props.posts.map(post => <Post {...post}/>);
+    let posts = this.props.posts.map(post => <Post key={post.id} {...post} short={true} />);
     return (
       <div className="blog-postlist">
         {posts}
@@ -22,7 +22,7 @@ PostList.propTypes = {
   posts: React.PropTypes.array.isRequired
 };
 PostList.defaultProps = {
-  posts: [{}, {title: 'Hello'}, {}]
+  posts: [{id:1}, {id: 2, title: 'Hello'}, {id: 3}]
 };
 
 export default PostList;

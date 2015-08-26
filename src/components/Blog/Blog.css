@@ -1,0 +1,21 @@
+.blog {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.blog-left-side {
+    flex-grow: 4;
+    min-width: 500px;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-right-side {
+    flex-grow: 1;
+}
+
+.blog-profile, .blog-filter {
+    margin: 5px;
+}
