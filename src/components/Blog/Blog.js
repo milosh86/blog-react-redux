@@ -1,6 +1,6 @@
 import './Blog.css';
 import React, {Component} from 'react';
-
+import {RouteHandler} from 'react-router';
 import PostList from '../PostList/PostList.js';
 import Profile from '../Profile/Profile.js';
 import Archives from '../Archives/Archives.js';
@@ -15,7 +15,7 @@ class Blog extends Component {
     return (
       <div className="blog">
         <div className="blog-left-side">
-          <PostList />
+          <RouteHandler title="HELOOOOOOOOOOOOOO"/>
         </div>
         <div className="blog-right-side">
           <Profile />

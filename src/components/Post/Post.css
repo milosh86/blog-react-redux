@@ -25,13 +25,17 @@
     font-weight: bold;
     float: left;
 }
-.blog-post--comments {
+.blog-post--numofcomments {
     font-size: 12px;
     font-weight: bold;
     float: right;
     margin-right: 10px;
 }
-.blog-post--comments a {
+.blog-post--numofcomments a {
     text-decoration: none;
     color: #1f95b4;
+}
+
+.blog-post--comments {
+    /*width: 400px;*/
 }

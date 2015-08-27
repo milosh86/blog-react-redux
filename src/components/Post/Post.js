@@ -1,4 +1,5 @@
 import './Post.css';
+import Comments from '../Comments/Comments.js';
 import React, {Component} from 'react';
 import moment from 'moment';
 
@@ -8,13 +9,13 @@ class Post extends Component {
   }
 
   render() {
-    let footer = this.props.short ? '' : <div>Footer</div>;
+    let footer = this.props.short ? '' : <div className="blog-post--comments"><Comments /></div>;
 
     return (
       <div className="blog-post">
         <div className="blog-post--header">
           <div className="blog-post--date">{moment(this.props.date).format('LLLL')}</div>
-          <div className="blog-post--comments"><a href="#">Comments({this.props.comments.length})</a></div>
+          <div className="blog-post--numofcomments"><a href="#">Comments({this.props.comments.length})</a></div>
         </div>
         <hr />
         <div className="blog-post--title"><a href='#'>{this.props.title}</a></div>

@@ -1,0 +1,32 @@
+.blog-comment--header {
+    overflow: auto;
+    padding: 5px;
+    background-color: #69a3b4;
+    /*border-radius: 15%;*/
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+    /*font-weight: bold;*/
+    /*border-bottom-style: solid;*/
+    /*border-style: solid;*/
+    /*border-bottom-width: thin;*/
+}
+
+.comment-header--user {
+    float: left;
+}
+
+.comment-header--date {
+    float: right;
+}
+
+.blog-comment--body {
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+.blog-inputbox {
+    margin-top: 15px;
+}

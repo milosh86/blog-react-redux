@@ -26,7 +26,8 @@ class Profile extends Component {
 
 Profile.displayName = 'Profile';
 Profile.propTypes = {
-  name: React.PropTypes.string.isRequired,
+  firstName: React.PropTypes.string.isRequired,
+  lastName: React.PropTypes.string.isRequired,
   punchLine: React.PropTypes.string
 };
 Profile.defaultProps = {
