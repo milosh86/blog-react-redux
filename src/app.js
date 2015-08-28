@@ -5,12 +5,15 @@ import Comments from './components/Comments/Comments.js';
 import PostList from './components/PostList/PostList.js';
 import Post from './components/Post/Post.js';
 import InputBox from './components/Comments/InputBox/InputBox.js';
+import PostListContainer from './containers/PostListContainer/PostListContainer.js';
 
 let routes = (
   <Route path='/' handler={Blog}>
-    <DefaultRoute handler={PostList}/>
+    <DefaultRoute handler={PostListContainer}/>
     <Route path="post/:permalink" handler={Post} />
     <Route path="post/?" handler={Comments} />
+    <Route path="tag/:tag" handler={PostListContainer} />
+    <Route path="archive/:month" handler={PostListContainer}/>
     <NotFoundRoute handler={InputBox} />
   </Route>
 );

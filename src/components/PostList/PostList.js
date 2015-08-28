@@ -11,7 +11,7 @@ class PostList extends Component {
     let posts = this.props.posts.map(post => <Post key={post.id} {...post} short={true} />);
     return (
       <div className="blog-postlist">
-        {posts}
+        {posts.length ? posts : 'No posts for given criteria'}
       </div>
     );
   }

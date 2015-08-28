@@ -5,22 +5,35 @@ import PostList from '../PostList/PostList.js';
 import Profile from '../Profile/Profile.js';
 import Archives from '../Archives/Archives.js';
 import Categories from '../Categories/Categories.js';
+import _ from 'lodash';
+
 
 class Blog extends Component {
   constructor(props) {
     super(props);
   }
 
+  _extractTags() {
+    return _.uniq(this.props.posts.reduce((acc, curr) => acc.concat(curr.tags), []));
+  }
   render() {
+    let tags = this._extractTags(this.props.posts);
+
     return (
       <div className="blog">
         <div className="blog-left-side">
-          <RouteHandler title="HELOOOOOOOOOOOOOO"/>
+          <RouteHandler posts={this.props.posts}/>
         </div>
         <div className="blog-right-side">
-          <Profile />
-          <Archives />
-          <Categories />
+          <Profile {...this.props.profile}/>
+          <Archives
+            title={this.props.archiveTitle}
+            onItemClick={this.props.onArchiveItemClick}
+            posts={this.props.posts} />
+          <Categories
+            title={this.props.categoriesTitle}
+            onItemClick={this.props.onCategoryItemClick}
+            tags={tags} />
         </div>
       </div>
     );
@@ -32,8 +45,64 @@ Blog.propTypes = {
   showFullPosts: React.PropTypes.bool
 
 };
+
 Blog.defaultProps = {
-  showFullPosts: false
+  showFullPosts: false,
+  profile: {
+    firstName: 'Milos',
+    lastName: 'Dzepina',
+    punchLine: 'JavaScript Engineer @ PSTech'
+  },
+  archiveTitle: 'Archives',
+  onArchiveItemClick: () => {},
+  categoriesTitle: 'Categories',
+  onCategoryItemClick: () => {},
+  posts: [
+    {
+      id: 1,
+      title: 'The post number 1',
+      author: 'Milos Dzepina',
+      date: new Date,
+      permalink: 'post-1',
+      body: 'Hello there this is dummy blog post number 1...',
+      tags: ['dummy', 'js', 'react'],
+      comments: [
+        {
+          author: 'User A',
+          date: new Date(),
+          body: 'Hey, this is stupid!!!'
+        },
+        {
+          author: 'User B',
+          date: new Date(),
+          body: 'Yes, it sucks...'
+        }
+      ]
+
+    },
+    {
+      id: 2,
+      title: 'The post number 2',
+      author: 'Milos Dzepina',
+      date: new Date,
+      permalink: 'post-2',
+      body: 'Hello there this is dummy blog post number 2...',
+      tags: ['dummy', 'redux', 'react'],
+      comments: [
+        {
+          author: 'User C',
+          date: new Date(),
+          body: 'Hey, this is stupid!!!'
+        },
+        {
+          author: 'User D',
+          date: new Date(),
+          body: 'Yes, it sucks...'
+        }
+      ]
+
+    }
+  ]
 };
 
 export default Blog;
