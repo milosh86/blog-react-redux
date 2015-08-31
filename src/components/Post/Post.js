@@ -8,8 +8,16 @@ class Post extends Component {
     super(props);
   }
 
+  static onPostClick(router, perma) {
+    router.transitionTo('post', {permalink: perma});
+  }
+
   render() {
-    let footer = this.props.short ? '' : <div className="blog-post--comments"><Comments /></div>;
+    let footer = this.props.short ?
+      '' :
+      <div className="blog-post--comments">
+        <Comments comments={this.props.comments}/>
+      </div>;
 
     return (
       <div className="blog-post">
@@ -18,7 +26,7 @@ class Post extends Component {
           <div className="blog-post--numofcomments"><a href="#">Comments({this.props.comments.length})</a></div>
         </div>
         <hr />
-        <div className="blog-post--title"><a href='#'>{this.props.title}</a></div>
+        <div className="blog-post--title" onClick={() => this.props.onPostClick(this.props.permalink)}>{this.props.title}</div>
         <div className="blog-post--body">{this.props.body}</div>
         {footer}
       </div>
@@ -36,11 +44,12 @@ Post.propTypes = {
     tags: React.PropTypes.arrayOf(React.PropTypes.string.isRequired),
     comments: React.PropTypes.arrayOf(
       React.PropTypes.shape({
-        date: React.PropTypes.string,
+        date: React.PropTypes.instanceOf(Date),
         author: React.PropTypes.string,
         body: React.PropTypes.string
       }).isRequired
     ),
+    onPostClick: React.PropTypes.func.isRequired,
     short: React.PropTypes.bool
 };
 Post.defaultProps = {

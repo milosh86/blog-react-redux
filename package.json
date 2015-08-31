@@ -33,7 +33,7 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "node src/server.js"
+    "start": "node server.js"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",

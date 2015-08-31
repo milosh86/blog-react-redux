@@ -1,12 +1,13 @@
 import './Blog.css';
 import React, {Component} from 'react';
-import {RouteHandler} from 'react-router';
+import {RouteHandler, Link} from 'react-router';
 import PostList from '../PostList/PostList.js';
 import Profile from '../Profile/Profile.js';
 import Archives from '../Archives/Archives.js';
 import Categories from '../Categories/Categories.js';
 import _ from 'lodash';
 
+import {router} from '../../router.js';
 
 class Blog extends Component {
   constructor(props) {
@@ -16,6 +17,17 @@ class Blog extends Component {
   _extractTags() {
     return _.uniq(this.props.posts.reduce((acc, curr) => acc.concat(curr.tags), []));
   }
+
+  onArchiveItemClick(item) {
+    router.transitionTo('archive', {month: item.replace(' ', '-')});
+    //router.transitionTo('/archive/');
+  }
+
+  onCategoryItemClick(item) {
+    router.transitionTo('tag', {tag: item});
+
+  }
+
   render() {
     let tags = this._extractTags(this.props.posts);
 
@@ -28,11 +40,11 @@ class Blog extends Component {
           <Profile {...this.props.profile}/>
           <Archives
             title={this.props.archiveTitle}
-            onItemClick={this.props.onArchiveItemClick}
+            onItemClick={(item) => this.onArchiveItemClick(item)}
             posts={this.props.posts} />
           <Categories
             title={this.props.categoriesTitle}
-            onItemClick={this.props.onCategoryItemClick}
+            onItemClick={(item) => this.onCategoryItemClick(item)}
             tags={tags} />
         </div>
       </div>
@@ -84,7 +96,7 @@ Blog.defaultProps = {
       id: 2,
       title: 'The post number 2',
       author: 'Milos Dzepina',
-      date: new Date,
+      date: new Date().setMonth(3),
       permalink: 'post-2',
       body: 'Hello there this is dummy blog post number 2...',
       tags: ['dummy', 'redux', 'react'],
@@ -92,12 +104,12 @@ Blog.defaultProps = {
         {
           author: 'User C',
           date: new Date(),
-          body: 'Hey, this is stupid!!!'
+          body: '2: Hey, this is stupid!!!'
         },
         {
           author: 'User D',
           date: new Date(),
-          body: 'Yes, it sucks...'
+          body: '2: Yes, it sucks...'
         }
       ]
 

@@ -30,8 +30,10 @@ class PostListContainer extends Component {
 
 PostListContainer.displayName = 'PostListContainer';
 PostListContainer.propTypes = {
-  tag: React.PropTypes.string,
-  month: React.PropTypes.string
+  params: React.PropTypes.shape({
+    tag: React.PropTypes.string,
+    month: React.PropTypes.string
+  })
 };
 PostListContainer.defaultProps = {
   tmp: 'tmp'

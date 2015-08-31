@@ -1,6 +1,7 @@
 import './PostList.css';
 import Post from '../Post/Post.js';
 import React, {Component} from 'react';
+import {router} from '../../router.js';
 
 class PostList extends Component {
   constructor(props) {
@@ -8,7 +9,14 @@ class PostList extends Component {
   }
 
   render() {
-    let posts = this.props.posts.map(post => <Post key={post.id} {...post} short={true} />);
+    let posts = this.props.posts.map(
+        post =>
+          <Post
+            onPostClick={(perma) => Post.onPostClick(router, perma)}
+            key={post.id} {...post}
+            short={true} />
+    );
+
     return (
       <div className="blog-postlist">
         {posts.length ? posts : 'No posts for given criteria'}

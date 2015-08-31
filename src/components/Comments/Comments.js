@@ -25,11 +25,11 @@ Comments.propTypes = {
 };
 Comments.defaultProps = {
   comments: [{
-    user: 'User',
+    author: 'User',
     date: new Date,
     body: 'Hello, this is default comment...this post is great.'
   }, {
-    user: 'User1',
+    author: 'User1',
     date: new Date,
     body: 'Hello again, this is default comment...this post is great.'
   }

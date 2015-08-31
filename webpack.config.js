@@ -2,16 +2,16 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
-  context: path.resolve(__dirname, 'src'),
+  devtool: 'eval',
+  //context: path.join(__dirname, 'src'),
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    './app.js'
+    './src/app'
   ],
   output: {
-    publicPath: '/out/',
-    path: path.resolve(__dirname, 'out'),
+    publicPath: '/static/',
+    path: path.join(__dirname, 'out'),
     filename: 'bundle.js'
   },
   plugins: [
@@ -23,7 +23,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: [
-          path.resolve(__dirname, 'src')
+          path.join(__dirname, 'src')
         ],
         loaders: ['react-hot', 'babel']
       },
@@ -41,7 +41,7 @@ module.exports = {
       }
     ]
   },
-  resolve: {
+  join: {
     // you can now require('file') instead of require('file.coffee')
     extensions: ['', '.js', '.json', '.coffee']
   }

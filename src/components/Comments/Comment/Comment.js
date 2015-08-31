@@ -11,7 +11,7 @@ class Comment extends Component {
     return (
       <div className="blog-comment">
         <div className="blog-comment--header">
-          <div className="comment-header--user">{this.props.user}</div>
+          <div className="comment-header--author">{this.props.author}</div>
           <div className="comment-header--date">{moment(this.props.date).fromNow()}</div>
         </div>
         <div className="blog-comment--body">{this.props.body}</div>
@@ -22,12 +22,12 @@ class Comment extends Component {
 
 Comment.displayName = 'Comment';
 Comment.propTypes = {
-  user: React.PropTypes.string.isRequired,
+  author: React.PropTypes.string.isRequired,
   date: React.PropTypes.instanceOf(Date).isRequired,
   body: React.PropTypes.string.isRequired
 };
 Comment.defaultProps = {
-  user: 'Some user',
+  author: 'Some author',
   date: new Date,
   body: 'Some random comment'
 };
