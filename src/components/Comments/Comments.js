@@ -13,7 +13,7 @@ class Comments extends Component {
     return (
       <div className="blog-comments">
         {comments}
-        <InputBox />
+        <InputBox onNewComment={this.props.onNewComment} />
       </div>
     );
   }
@@ -21,7 +21,8 @@ class Comments extends Component {
 
 Comments.displayName = 'Comments';
 Comments.propTypes = {
-  comments: React.PropTypes.array.isRequired
+  comments: React.PropTypes.array.isRequired,
+  onNewComment: React.PropTypes.func.isRequired
 };
 Comments.defaultProps = {
   comments: [{

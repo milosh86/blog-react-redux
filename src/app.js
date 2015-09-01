@@ -23,7 +23,5 @@ let routes = (
 
 setRouter(routes, Handler => React.render(<Handler />, document.getElementById('content')));
 
-//Router.run(routes, function (Handler) {
-//  React.render(<Handler />, document.getElementById('content'));
-//});
+
 

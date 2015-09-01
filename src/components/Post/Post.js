@@ -16,14 +16,16 @@ class Post extends Component {
     let footer = this.props.short ?
       '' :
       <div className="blog-post--comments">
-        <Comments comments={this.props.comments}/>
+        <Comments
+          comments={this.props.comments}
+          onNewComment={this.props.onNewComment} />
       </div>;
 
     return (
       <div className="blog-post">
         <div className="blog-post--header">
           <div className="blog-post--date">{moment(this.props.date).format('LLLL')}</div>
-          <div className="blog-post--numofcomments"><a href="#">Comments({this.props.comments.length})</a></div>
+          <div className="blog-post--numofcomments">Comments({this.props.comments.length})</div>
         </div>
         <hr />
         <div className="blog-post--title" onClick={() => this.props.onPostClick(this.props.permalink)}>{this.props.title}</div>
@@ -50,6 +52,7 @@ Post.propTypes = {
       }).isRequired
     ),
     onPostClick: React.PropTypes.func.isRequired,
+    onNewComment: React.PropTypes.func,
     short: React.PropTypes.bool
 };
 Post.defaultProps = {

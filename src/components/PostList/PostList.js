@@ -13,7 +13,8 @@ class PostList extends Component {
         post =>
           <Post
             onPostClick={(perma) => Post.onPostClick(router, perma)}
-            key={post.id} {...post}
+            key={post.id}
+            {...post}
             short={true} />
     );
 

@@ -34,7 +34,7 @@ class InputBox extends Component {
       });
 
       this.props.onNewComment({
-        user: name,
+        author: name,
         body: comment,
         date: new Date
       });

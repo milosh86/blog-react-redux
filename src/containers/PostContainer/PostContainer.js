@@ -13,7 +13,12 @@ class PostContainer extends Component {
     let post = this.props.posts.filter(post => post.permalink === permalink);
 
     return (
-       post.length ? <Post onPostClick={(perma) => Post.onPostClick(router, perma)} {...post[0]}/> : <div>'Could not find requested post'</div>
+       post.length ?
+         <Post
+           onPostClick={(perma) => Post.onPostClick(router, perma)}
+           onNewComment={(comment) => this.props.onNewComment(comment, permalink)}
+           {...post[0]}/> :
+         <div>'Could not find requested post'</div>
     );
   }
 }
@@ -23,7 +28,8 @@ PostContainer.propTypes = {
   params: React.PropTypes.shape({
     permalink: React.PropTypes.string
   }),
-  posts: React.PropTypes.array.isRequired
+  posts: React.PropTypes.array.isRequired,
+  onNewComment: React.PropTypes.func.isRequired
 };
 PostContainer.defaultProps = {
 };
