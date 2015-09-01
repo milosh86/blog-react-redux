@@ -13,13 +13,20 @@ class Post extends Component {
   }
 
   render() {
-    let footer = this.props.short ?
-      '' :
-      <div className="blog-post--comments">
-        <Comments
-          comments={this.props.comments}
-          onNewComment={this.props.onNewComment} />
-      </div>;
+    let footer = '';
+    let body = this.props.body;
+
+    if (this.props.short) {
+      body = body.substr(0, 200);
+      console.log('BODY', body)
+    } else {
+      footer = 
+        <div className="blog-post--comments">
+          <Comments
+            comments={this.props.comments}
+            onNewComment={this.props.onNewComment} />
+        </div>;
+    }
 
     return (
       <div className="blog-post">
@@ -29,7 +36,7 @@ class Post extends Component {
         </div>
         <hr />
         <div className="blog-post--title" onClick={() => this.props.onPostClick(this.props.permalink)}>{this.props.title}</div>
-        <div className="blog-post--body">{this.props.body}</div>
+        <div className="blog-post--body">{body}</div>
         {footer}
       </div>
     );
