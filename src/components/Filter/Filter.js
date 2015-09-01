@@ -11,10 +11,11 @@ class Filter extends Component {
   render() {
     let items = _.uniq(this.props.items)
       .map(item =>
-        <div key={item} className="blog-filter--item">
-          <a href="#" onClick={() => this.props.onItemClick(item)}>
+        <div 
+          key={item} 
+          className="blog-filter--item" 
+          onClick={() => this.props.onItemClick(item)}>
             {item}
-          </a>
         </div>);
 
     return (

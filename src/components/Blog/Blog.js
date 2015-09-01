@@ -1,13 +1,16 @@
 import './Blog.css';
+
 import React, {Component} from 'react';
 import {RouteHandler, Link} from 'react-router';
+import {router} from '../../router.js';
+
 import PostList from '../PostList/PostList.js';
 import Profile from '../Profile/Profile.js';
 import Archives from '../Archives/Archives.js';
 import Categories from '../Categories/Categories.js';
+
 import _ from 'lodash';
 
-import {router} from '../../router.js';
 
 class Blog extends Component {
   constructor(props) {
@@ -22,7 +25,6 @@ class Blog extends Component {
 
   onArchiveItemClick(item) {
     router.transitionTo('archive', {month: item.replace(' ', '-')});
-    //router.transitionTo('/archive/');
   }
 
   onCategoryItemClick(item) {

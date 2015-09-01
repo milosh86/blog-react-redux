@@ -10,9 +10,10 @@
     margin-top: 5px;
 }
 
-.blog-filter--item a {
+.blog-filter--item {
     color: #1f95b4;
-    text-decoration: none;
+    /*text-decoration: none;*/
+    cursor: pointer;
     font-size: 14px;
-    line-height: 1;
+    line-height: 1.2;
 }
