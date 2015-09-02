@@ -1,0 +1,10 @@
+#blog-postlist--newpost {
+    color: #007F80;
+    font-weight: bold;
+    border-style: solid;
+    border-width: thin;
+    width: 75px;
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+}

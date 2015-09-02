@@ -1,0 +1,7 @@
+.blog-newpost--body textarea {
+  width: 500px;
+}
+.blog-newpost--title input,
+.blog-newpost--tags input {
+  width: 500px;
+}

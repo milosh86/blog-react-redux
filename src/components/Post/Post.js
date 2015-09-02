@@ -18,7 +18,6 @@ class Post extends Component {
 
     if (this.props.short) {
       body = body.substr(0, 200);
-      console.log('BODY', body)
     } else {
       footer = 
         <div className="blog-post--comments">

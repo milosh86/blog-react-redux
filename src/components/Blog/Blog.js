@@ -43,6 +43,25 @@ class Blog extends Component {
     this.setState({posts: posts});
   }
 
+  onNewPost(post) {
+    let newPost = {
+      date: post.date,
+      title: post.title,
+      body: post.body,
+      author: 'Milos Dzepina',
+      permalink: post.title.replace(/\s/g, '-'),
+      tags: post.tags,
+      comments: []
+
+    };
+
+    this.setState({
+      posts: [...this.state.posts, newPost]
+    });
+
+    router.transitionTo('/');
+  }
+
   render() {
     let tags = this._extractTags();
 
@@ -51,7 +70,8 @@ class Blog extends Component {
         <div className="blog-left-side">
           <RouteHandler
             posts={this.state.posts}
-            onNewComment={(comment, perma) => this.onNewComment(comment, perma)}/>
+            onNewComment={(comment, perma) => this.onNewComment(comment, perma)}
+            onNewPost={post => this.onNewPost(post)} />
         </div>
         <div className="blog-right-side">
           <Profile {...this.state.profile}/>
@@ -78,7 +98,7 @@ Blog.propTypes = {
 Blog.defaultProps = {
   showFullPosts: false,
   archiveTitle: 'Archives',
-  categoriesTitle: 'Categories',
+  categoriesTitle: 'Categories'
 };
 
 let someDate = new Date();
@@ -119,7 +139,7 @@ let sampleBlogData = {
       author: 'Milos Dzepina',
       date: someDate,
       permalink: 'post-2',
-      body: 'Hello there this is dummy blog post number 2...Hello there this is dummy blog post number 2...Hello there' + 
+      body: 'Hello there this is dummy blog post number 2...Hello there this is dummy blog post number 2...Hello there' +
       'this is dummy blog post number 2...Hello there this is dummy blog post number 2...Hello there this is dummy blog post number 2...' +
       'this is dummy blog post number 2...Hello *****************Should not see this ***************mmy blog post number 2...Hello there this is dummy blog post number 2...' +
       'this is dummy blog post number 2...Hello there this is dummy blog post number 2...Hello there this is dummy blog post number 2...' +

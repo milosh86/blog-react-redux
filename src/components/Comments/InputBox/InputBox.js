@@ -21,8 +21,8 @@ class InputBox extends Component {
   }
 
   handleNewComment() {
-    let name = React.findDOMNode(this.refs.nameField).value;
-    let comment = React.findDOMNode(this.refs.commentField).value;
+    let name = this.state.name; //React.findDOMNode(this.refs.nameField).value;
+    let comment = this.state.comment; //React.findDOMNode(this.refs.commentField).value;
 
     if (!name || !comment) {
       this.setState({message: 'All fields must be fulfilled'});

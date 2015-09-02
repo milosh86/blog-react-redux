@@ -20,6 +20,7 @@ class PostList extends Component {
 
     return (
       <div className="blog-postlist">
+        <div id="blog-postlist--newpost" onClick={this.props.onNewPostClick}>New post</div>
         {posts.length ? posts : 'No posts for given criteria'}
       </div>
     );
@@ -28,7 +29,8 @@ class PostList extends Component {
 
 PostList.displayName = 'Post List';
 PostList.propTypes = {
-  posts: React.PropTypes.array.isRequired
+  posts: React.PropTypes.array.isRequired,
+  onNewPostClick: React.PropTypes.func.isRequired
 };
 PostList.defaultProps = {
   posts: [{id:1}, {id: 2, title: 'Hello'}, {id: 3}]

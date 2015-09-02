@@ -1,5 +1,7 @@
-import PostList from '../../components/PostList/PostList.js';
 import React, {Component} from 'react';
+import PostList from '../../components/PostList/PostList.js';
+import {router} from '../../router.js';
+
 import _ from 'lodash';
 import moment from 'moment';
 
@@ -23,7 +25,9 @@ class PostListContainer extends Component {
     }
 
     return (
-      <PostList posts={filtered} />
+      <PostList
+        posts={filtered}
+        onNewPostClick={() => router.transitionTo('newpost')}/>
     );
   }
 }
