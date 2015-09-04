@@ -19,7 +19,7 @@ class Post extends Component {
     if (this.props.short) {
       body = body.substr(0, 200);
     } else {
-      footer = 
+      footer =
         <div className="blog-post--comments">
           <Comments
             comments={this.props.comments}

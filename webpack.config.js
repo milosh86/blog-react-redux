@@ -5,8 +5,7 @@ module.exports = {
   devtool: 'eval',
   //context: path.join(__dirname, 'src'),
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
+    'webpack-hot-middleware/client',
     './src/app'
   ],
   output: {
@@ -25,7 +24,7 @@ module.exports = {
         include: [
           path.join(__dirname, 'src')
         ],
-        loaders: ['react-hot', 'babel']
+        loaders: ['babel']
       },
       {
         test: /\.less$/,
