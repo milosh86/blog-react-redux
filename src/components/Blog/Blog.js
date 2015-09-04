@@ -11,7 +11,6 @@ import Categories from '../Categories/Categories.js';
 
 import _ from 'lodash';
 
-
 class Blog extends Component {
   constructor(props) {
     super(props);
@@ -23,11 +22,11 @@ class Blog extends Component {
     return _.uniq(this.state.posts.reduce((acc, curr) => acc.concat(curr.tags), []));
   }
 
-  onArchiveItemClick(item) {
+  static onArchiveItemClick(item) {
     router.transitionTo('archive', {month: item.replace(' ', '-')});
   }
 
-  onCategoryItemClick(item) {
+  static onCategoryItemClick(item) {
     router.transitionTo('tag', {tag: item});
 
   }
@@ -77,11 +76,11 @@ class Blog extends Component {
           <Profile {...this.state.profile}/>
           <Archives
             title={this.props.archiveTitle}
-            onItemClick={(item) => this.onArchiveItemClick(item)}
+            onItemClick={Blog.onArchiveItemClick}
             posts={this.state.posts} />
           <Categories
             title={this.props.categoriesTitle}
-            onItemClick={(item) => this.onCategoryItemClick(item)}
+            onItemClick={Blog.onCategoryItemClick}
             tags={tags} />
         </div>
       </div>
@@ -108,7 +107,7 @@ let sampleBlogData = {
   profile: {
     firstName: 'Milos',
     lastName: 'Dzepina',
-    punchLine: 'JavaScript Engineer @ PSTech'
+    punchLine: 'JavaScript Engineer @PSTech'
   },
   posts: [
     {
