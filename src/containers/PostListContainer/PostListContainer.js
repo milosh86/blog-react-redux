@@ -24,6 +24,9 @@ class PostListContainer extends Component {
       filtered = posts;
     }
 
+    // sort from the latest to the oldest
+    filtered.sort((a, b) => b.date - a.date);
+
     return (
       <PostList
         posts={filtered}
