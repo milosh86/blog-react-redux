@@ -33,5 +33,5 @@ PostContainer.propTypes = {
 };
 PostContainer.defaultProps = {
 };
-//{post.length ? <Post ...post[0]/> : 'Requested post not found'}
+
 export default PostContainer;

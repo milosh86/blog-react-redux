@@ -13,7 +13,7 @@ class Post extends Component {
   }
 
   render() {
-    let footer = '';
+    let footer = null;
     let body = this.props.body;
 
     if (this.props.short) {

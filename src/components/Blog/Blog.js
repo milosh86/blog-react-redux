@@ -19,7 +19,7 @@ class Blog extends Component {
   }
 
   _extractTags() {
-    return _.uniq(this.state.posts.reduce((acc, curr) => acc.concat(curr.tags), []));
+    return _.uniq(this.state.posts.reduce((acc, curr) => acc.concat(curr.tags), [])).sort();
   }
 
   static onArchiveItemClick(item) {
