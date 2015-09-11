@@ -1,11 +1,20 @@
 import './Categories.css';
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Filter from '../Filter/Filter.js';
 
 class Categories extends Component {
-  constructor(props) {
-    super(props);
-  }
+
+  static displayName = 'Categories';
+
+  static propTypes = {
+    tags: React.PropTypes.array.isRequired,
+    title: React.PropTypes.string.isRequired,
+    onItemClick: React.PropTypes.func.isRequired
+  };
+
+  static defaultProps = {
+    title: 'Categories',
+  };
 
   render() {
     let items = this.props.tags;
@@ -19,17 +28,5 @@ class Categories extends Component {
     );
   }
 }
-
-Categories.displayName = 'Categories';
-Categories.propTypes = {
-  tags: React.PropTypes.array.isRequired,
-  title: React.PropTypes.string.isRequired,
-  onItemClick: React.PropTypes.func.isRequired
-};
-Categories.defaultProps = {
-  title: 'Categories',
-  tags: ['all', 'react', 'JS', 'redux', 'node.js', 'node.js'],
-  onItemClick: () => {}
-};
 
 export default Categories;

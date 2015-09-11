@@ -1,12 +1,21 @@
 import './Archives.css';
 import moment from 'moment';
 import Filter from '../Filter/Filter.js'
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 class Archives extends Component {
-  constructor(props) {
-    super(props);
-  }
+
+  static displayName = 'Archives';
+
+  static propTypes = {
+    posts: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired,
+    onItemClick: PropTypes.func.isRequired
+  };
+
+  static defaultProps = {
+    title: 'Archives'
+  };
 
   _generateArchItems(posts) {
     let itemsMap = {};
@@ -29,17 +38,5 @@ class Archives extends Component {
     );
   }
 }
-
-Archives.displayName = 'Archives';
-Archives.propTypes = {
-  posts: React.PropTypes.array.isRequired,
-  title: React.PropTypes.string.isRequired,
-  onItemClick: React.PropTypes.func.isRequired
-};
-Archives.defaultProps = {
-  title: 'Archives',
-  posts: [{date: new Date().setMonth(9)},{date: new Date},{date: new Date},{date: new Date().setMonth(3)}],
-  onItemClick: () => {}
-};
 
 export default Archives;
