@@ -25,17 +25,3 @@ app.listen(3000, 'localhost', function (err, result) {
 
   console.log('Listening at http://localhost:3000');
 });
-
-let map = {
-  forEach(f) {
-    Object.keys(this).forEach(key => f(this[key], key));
-  },
-
-}
-
-var my = Object.create(map);
-
-my['milos'] = 'dzepina'
-my['dragan'] = 'vasic'
-
-my.forEach(name => console.log(name));
