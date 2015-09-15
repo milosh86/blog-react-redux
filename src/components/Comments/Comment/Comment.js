@@ -1,11 +1,15 @@
 import './Comment.css';
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
 
 class Comment extends Component {
-  constructor(props) {
-    super(props);
-  }
+  static displayName = 'Comment';
+
+  static propTypes = {
+    author: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
+    body: PropTypes.string.isRequired
+  };
 
   render() {
     return (
@@ -19,17 +23,5 @@ class Comment extends Component {
     );
   }
 }
-
-Comment.displayName = 'Comment';
-Comment.propTypes = {
-  author: React.PropTypes.string.isRequired,
-  date: React.PropTypes.instanceOf(Date).isRequired,
-  body: React.PropTypes.string.isRequired
-};
-Comment.defaultProps = {
-  author: 'Some author',
-  date: new Date,
-  body: 'Some random comment'
-};
 
 export default Comment;

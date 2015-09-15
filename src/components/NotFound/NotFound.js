@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class NotFound extends Component {
+class NotFound {
 
   render() {
     return (

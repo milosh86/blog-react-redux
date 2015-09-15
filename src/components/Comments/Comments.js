@@ -1,15 +1,24 @@
 import './Comments.css';
 import Comment from './Comment/Comment.js';
 import InputBox from './InputBox/InputBox.js';
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 class Comments extends Component {
-  constructor(props) {
-    super(props);
-  }
+
+  static displayName = 'Comments';
+
+  static propTypes = {
+    comments: PropTypes.arrayOf(PropTypes.shape({
+        author: PropTypes.string,
+        date: PropTypes.instanceOf(Date),
+        body: PropTypes.string
+      })).isRequired,
+    onNewComment: React.PropTypes.func.isRequired
+  };
 
   render() {
     let comments = this.props.comments.map(comment => <Comment {...comment} />);
+
     return (
       <div className="blog-comments">
         {comments}
@@ -18,23 +27,5 @@ class Comments extends Component {
     );
   }
 }
-
-Comments.displayName = 'Comments';
-Comments.propTypes = {
-  comments: React.PropTypes.array.isRequired,
-  onNewComment: React.PropTypes.func.isRequired
-};
-Comments.defaultProps = {
-  comments: [{
-    author: 'User',
-    date: new Date,
-    body: 'Hello, this is default comment...this post is great.'
-  }, {
-    author: 'User1',
-    date: new Date,
-    body: 'Hello again, this is default comment...this post is great.'
-  }
-  ]
-};
 
 export default Comments;

@@ -1,7 +1,14 @@
 import './InputBox.css';
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 class InputBox extends Component {
+
+  static displayName = 'InputBox';
+
+  static propTypes = {
+    onNewComment: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
 
@@ -12,17 +19,17 @@ class InputBox extends Component {
     };
   }
 
-  handleNameChange(event) {
+  handleNameChange = (event) => {
     this.setState({name: event.target.value});
   }
 
-  handleCommentChange(event) {
+  handleCommentChange = (event) => {
     this.setState({comment: event.target.value});
   }
 
-  handleNewComment() {
-    let name = this.state.name; //React.findDOMNode(this.refs.nameField).value;
-    let comment = this.state.comment; //React.findDOMNode(this.refs.commentField).value;
+  handleNewComment = () => {
+    let name = this.state.name;
+    let comment = this.state.comment; //or without state: React.findDOMNode(this.refs.commentField).value;
 
     if (!name || !comment) {
       this.setState({message: 'All fields must be fulfilled'});
@@ -46,32 +53,22 @@ class InputBox extends Component {
       <div className="blog-inputbox">
         <h3>Add comment</h3>
         <input type="text"
-               ref="nameField"
                value={this.state.name}
                placeholder="Enter your name (required)"
-               onChange={event => this.handleNameChange(event)} />
+               onChange={this.handleNameChange} />
         <br/>
         <br/>
         <textarea type="text"
-               ref="commentField"
                rows="10"
                value={this.state.comment}
                placeholder="Enter your comment"
-               onChange={event => this.handleCommentChange(event)} />
+               onChange={this.handleCommentChange} />
         <br/>
-        <button onClick={() => this.handleNewComment()}>Submit</button>
+        <button onClick={this.handleNewComment}>Submit</button>
         <div>{this.state.message}</div>
       </div>
     );
   }
 }
-
-InputBox.displayName = 'InputBox';
-InputBox.propTypes = {
-  onNewComment: React.PropTypes.func.isRequired
-};
-InputBox.defaultProps = {
-  onNewComment: () => {}
-};
 
 export default InputBox;

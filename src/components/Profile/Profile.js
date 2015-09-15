@@ -1,10 +1,14 @@
 import './Profile.css';
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 class Profile extends Component {
-  constructor(props) {
-    super(props);
-  }
+  static displayName = 'Profile';
+
+  static propTypes = {
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    punchLine: PropTypes.string.isRequired
+  };
 
   //add profile picture optionally
   render() {
@@ -23,17 +27,5 @@ class Profile extends Component {
     );
   }
 }
-
-Profile.displayName = 'Profile';
-Profile.propTypes = {
-  firstName: React.PropTypes.string.isRequired,
-  lastName: React.PropTypes.string.isRequired,
-  punchLine: React.PropTypes.string
-};
-Profile.defaultProps = {
-  firstName: 'FirstName',
-  lastName: 'LastName',
-  punchLine: 'Default Developer from Belgrade'
-};
 
 export default Profile;

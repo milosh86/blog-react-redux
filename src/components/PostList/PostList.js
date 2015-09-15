@@ -4,9 +4,12 @@ import React, {Component} from 'react';
 import {router} from '../../router.js';
 
 class PostList extends Component {
-  constructor(props) {
-    super(props);
-  }
+  static displayName = 'Post List';
+
+  static propTypes = {
+    posts: React.PropTypes.array.isRequired,
+    onNewPostClick: React.PropTypes.func.isRequired
+  };
 
   render() {
     let posts = this.props.posts.map(
@@ -26,14 +29,5 @@ class PostList extends Component {
     );
   }
 }
-
-PostList.displayName = 'Post List';
-PostList.propTypes = {
-  posts: React.PropTypes.array.isRequired,
-  onNewPostClick: React.PropTypes.func.isRequired
-};
-PostList.defaultProps = {
-  posts: [{id:1}, {id: 2, title: 'Hello'}, {id: 3}]
-};
 
 export default PostList;

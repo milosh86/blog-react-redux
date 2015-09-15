@@ -1,12 +1,30 @@
 import './Post.css';
 import Comments from '../Comments/Comments.js';
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
 
 class Post extends Component {
-  constructor(props) {
-    super(props);
-  }
+
+  static displayName = 'Post main page';
+
+  static propTypes = {
+    date: PropTypes.instanceOf(Date).isRequired,
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    permalink: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
+    comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        date: PropTypes.instanceOf(Date),
+        author: PropTypes.string,
+        body: PropTypes.string
+      }).isRequired
+    ),
+    onPostClick: PropTypes.func.isRequired,
+    onNewComment: PropTypes.func.isRequired,
+    short: PropTypes.bool.isRequired
+  };
 
   static onPostClick(router, perma) {
     router.transitionTo('post', {permalink: perma});
@@ -41,35 +59,5 @@ class Post extends Component {
     );
   }
 }
-
-Post.displayName = 'Post main page';
-Post.propTypes = {
-    date: React.PropTypes.instanceOf(Date).isRequired,
-    title: React.PropTypes.string.isRequired,
-    author: React.PropTypes.string.isRequired,
-    body: React.PropTypes.string.isRequired,
-    permalink: React.PropTypes.string.isRequired,
-    tags: React.PropTypes.arrayOf(React.PropTypes.string.isRequired),
-    comments: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        date: React.PropTypes.instanceOf(Date),
-        author: React.PropTypes.string,
-        body: React.PropTypes.string
-      }).isRequired
-    ),
-    onPostClick: React.PropTypes.func.isRequired,
-    onNewComment: React.PropTypes.func,
-    short: React.PropTypes.bool
-};
-Post.defaultProps = {
-  date: new Date(),
-  title: 'Default blog post',
-  author: 'M.Dz.',
-  body: 'Hello, this is some default post.Hello, this is some default postHello, this is some default postHello, this is some default postHello, this is some default postHello, this is some default postHello, this is some default post..',
-  permalink: 'default-post',
-  tags: ['default tag'],
-  comments: [],
-  short: false
-};
 
 export default Post;

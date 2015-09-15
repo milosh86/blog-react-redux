@@ -2,6 +2,13 @@ import './NewPost.css';
 import React, {Component} from 'react';
 
 class NewPost extends Component {
+
+  static displayName = 'NewPost';
+
+  static propTypes = {
+    onNewPost: React.PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
 
@@ -12,25 +19,25 @@ class NewPost extends Component {
     };
   }
 
-  handleTitleChange(event) {
+  handleTitleChange = (event) => {
     this.setState({
       title: event.target.value
     });
   }
 
-  handleBodyChange(event) {
+  handleBodyChange = (event) => {
     this.setState({
       body: event.target.value
     });
   }
 
-  handleTagsChange(event) {
+  handleTagsChange = (event) => {
     this.setState({
       tags: event.target.value
     });
   }
 
-  handleNewPost() {
+  handleNewPost = () => {
     let title = this.state.title;
     let body = this.state.body;
     let tags = this.state.tags;
@@ -47,8 +54,7 @@ class NewPost extends Component {
       this.props.onNewPost({
         title,
         body,
-        tags: tags.split(/\s*,\s*/),
-        date: new Date
+        tags: tags.split(/\s*,\s*/)
       });
     }
   }
@@ -63,7 +69,7 @@ class NewPost extends Component {
             type="text"
             value={this.state.title}
             placeholder="Enter post title"
-            onChange={event => this.handleTitleChange(event)} />
+            onChange={this.handleTitleChange} />
         </div>
         <div className="blog-newpost--body">
           <p>New post content:</p>
@@ -72,7 +78,7 @@ class NewPost extends Component {
             rows="30"
             value={this.state.body}
             placeholder="New post"
-            onChange={event => this.handleBodyChange(event)} />
+            onChange={this.handleBodyChange} />
         </div>
 
         <div className="blog-newpost--tags">
@@ -81,22 +87,14 @@ class NewPost extends Component {
             type="text"
             value={this.state.tags}
             placeholder="Insert tags (keywords separated by comma)"
-            onChange={event => this.handleTagsChange(event)} />
+            onChange={this.handleTagsChange} />
         </div>
 
-        <button onClick={() => this.handleNewPost()}>Submit</button>
+        <button onClick={this.handleNewPost}>Submit</button>
         <div>{this.state.message}</div>
       </div>
     );
   }
 }
-
-NewPost.displayName = 'NewPost';
-NewPost.propTypes = {
-  tmp: React.PropTypes.string.isRequired
-};
-NewPost.defaultProps = {
-  tmp: 'tmp'
-};
 
 export default NewPost;
