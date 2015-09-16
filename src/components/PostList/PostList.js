@@ -1,7 +1,7 @@
 import './PostList.css';
 import Post from '../Post/Post.js';
 import React, {Component} from 'react';
-import {router} from '../../router.js';
+import history from '../../history.js';
 
 class PostList extends Component {
   static displayName = 'Post List';
@@ -15,7 +15,7 @@ class PostList extends Component {
     let posts = this.props.posts.map(
         post =>
           <Post
-            onPostClick={(perma) => Post.onPostClick(router, perma)}
+            onPostClick={(perma) => Post.onPostClick(history, perma)}
             key={post.id}
             {...post}
             short={true} />

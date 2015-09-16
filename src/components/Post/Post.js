@@ -26,8 +26,8 @@ class Post extends Component {
     short: PropTypes.bool.isRequired
   };
 
-  static onPostClick(router, perma) {
-    router.transitionTo('post', {permalink: perma});
+  static onPostClick(history, perma) {
+    history.pushState(null, `/post/${perma}`);
   }
 
   render() {

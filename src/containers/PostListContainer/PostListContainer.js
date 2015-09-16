@@ -1,14 +1,30 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
+
 import PostList from '../../components/PostList/PostList.js';
-import {router} from '../../router.js';
+import history from '../../history.js';
+
+import * as postActions from '../../actions/posts.js';
 
 import _ from 'lodash';
 import moment from 'moment';
 
 class PostListContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+
+  static displayName = 'PostListContainer';
+
+  static propTypes = {
+    params: PropTypes.oneOfType([
+      PropTypes.shape({
+        tag: PropTypes.string
+      }),
+      PropTypes.shape({
+        month: PropTypes.string
+      }),
+    ]).isRequired,
+    posts: PropTypes.array.isRequired
+
+  };
 
   render() {
     let tag = this.props.params.tag;
@@ -30,20 +46,15 @@ class PostListContainer extends Component {
     return (
       <PostList
         posts={filtered}
-        onNewPostClick={() => router.transitionTo('newpost')}/>
+        onNewPostClick={() => history.pushState(null, '/newpost/')}/>
     );
   }
 }
 
-PostListContainer.displayName = 'PostListContainer';
-PostListContainer.propTypes = {
-  params: React.PropTypes.shape({
-    tag: React.PropTypes.string,
-    month: React.PropTypes.string
-  })
-};
-PostListContainer.defaultProps = {
-  tmp: 'tmp'
-};
+function select(state) {
+  return {
+    posts: state.posts
+  };
+}
 
-export default PostListContainer;
+export default connect(select)(PostListContainer);

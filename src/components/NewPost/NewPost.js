@@ -13,43 +13,19 @@ class NewPost extends Component {
     super(props);
 
     this.state = {
-      title: '',
-      body: '',
-      tags: ''
+      message: ''
     };
   }
 
-  handleTitleChange = (event) => {
-    this.setState({
-      title: event.target.value
-    });
-  }
-
-  handleBodyChange = (event) => {
-    this.setState({
-      body: event.target.value
-    });
-  }
-
-  handleTagsChange = (event) => {
-    this.setState({
-      tags: event.target.value
-    });
-  }
-
   handleNewPost = () => {
-    let title = this.state.title;
-    let body = this.state.body;
-    let tags = this.state.tags;
+    let title = React.findDOMNode(this.refs.title).value;
+    let body = React.findDOMNode(this.refs.body).value;
+    let tags = React.findDOMNode(this.refs.tags).value;
 
     if (!title || !body || !tags) {
       this.setState({message: 'All fields must be fulfilled'});
     } else {
-      this.setState({
-        message: '',
-        name: '',
-        comment: ''
-      });
+      this.setState({message: ''});
 
       this.props.onNewPost({
         title,
@@ -57,37 +33,36 @@ class NewPost extends Component {
         tags: tags.split(/\s*,\s*/)
       });
     }
-  }
+  };
 
   render() {
     return (
       <div class="blog-newpost">
         <h3>Add New Post</h3>
+
         <div className="blog-newpost--title">
           <p>Post title:</p>
           <input
             type="text"
-            value={this.state.title}
-            placeholder="Enter post title"
-            onChange={this.handleTitleChange} />
+            ref="title"
+            placeholder="Enter post title" />
         </div>
+
         <div className="blog-newpost--body">
           <p>New post content:</p>
           <textarea
             type="text"
             rows="30"
-            value={this.state.body}
-            placeholder="New post"
-            onChange={this.handleBodyChange} />
+            ref="body"
+            placeholder="New post" />
         </div>
 
         <div className="blog-newpost--tags">
           <p>Tags:</p>
           <input
             type="text"
-            value={this.state.tags}
-            placeholder="Insert tags (keywords separated by comma)"
-            onChange={this.handleTagsChange} />
+            ref="tags"
+            placeholder="Insert tags (keywords separated by comma)" />
         </div>
 
         <button onClick={this.handleNewPost}>Submit</button>

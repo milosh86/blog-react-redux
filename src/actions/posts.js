@@ -21,9 +21,10 @@ export function deletePost(postId) {
   }
 }
 
-export function createComment(comment) {
+export function createComment(comment, postId) {
   return {
     type: types.CREATE_COMMENT,
+    id: postId,
     comment
   }
 }

@@ -1,5 +1,8 @@
 import {CREATE_POST, UPDATE_POST, DELETE_POST, CREATE_COMMENT, UPDATE_COMMENT, DELETE_COMMENT} from '../constants/BlogConstants';
 
+let someDate = new Date;
+someDate.setMonth(1);
+
 const initialState = [
   {
     id: 1,
@@ -67,9 +70,9 @@ export default function posts(state = initialState, action) {
   switch (action.type) {
     case CREATE_POST:
       return [...state, {
-        ...post,
+        ...action.post,
         id: _id++,
-        permalink: post.title.replace(/\s/g, '-'),
+        permalink: action.post.title.replace(/\s/g, '-'),
         comments: [],
         date: new Date
       }];
