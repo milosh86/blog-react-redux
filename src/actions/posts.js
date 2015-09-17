@@ -24,15 +24,17 @@ export function deletePost(postId) {
 export function createComment(comment, postId) {
   return {
     type: types.CREATE_COMMENT,
-    id: postId,
-    comment
+    postId: comment.postId,
+    comment: comment.data
   }
 }
 
-export function updateComment(data) {
+export function updateComment(comment) {
   return {
     type: types.UPDATE_COMMENT,
-    data
+    data: comment.data,
+    postId: comment.postId,
+    commentId: comment.commentId
   }
 }
 

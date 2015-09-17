@@ -66,6 +66,26 @@ const initialState = [
 let _id = 3;
 let _commentId = 5;
 
+
+function comments(state = [], action) {
+  switch (action.type) {
+    case CREATE_COMMENT:
+      return [...state, action.comment];
+
+    case UPDATE_COMMENT:
+      return state.map(comment =>
+        comment.id === action.data.id ?
+          Object.assign({}, comment, action.data) :
+          comment);
+
+    case DELETE_COMMENT:
+      return state.filter(comment => comment.id !== action.commentId);
+
+    default:
+      return state;
+  }
+}
+
 export default function posts(state = initialState, action) {
   switch (action.type) {
     case CREATE_POST:
@@ -88,29 +108,13 @@ export default function posts(state = initialState, action) {
       return state.filter(post => post.id !== action.id);
 
     case CREATE_COMMENT:
-      return state.map(post =>
-        post.id === action.id ?
-          Object.assign({}, post, {comments: [...post.comments, action.comment]}) :
-          post
-      );
-
     case UPDATE_COMMENT:
+    case DELETE_COMMENT:
       return state.map(post =>
-        post.id === action.id ?
-          Object.assign({}, post, {comments: post.comments.map(comment =>
-            comment.id === action.data.id ?
-              Object.assign({}, comment, action.data) :
-              comment
-          )}) :
+        post.id === action.postId ?
+          Object.assign({}, post, {comments: comments(post.comments, action)}) :
           post
       );
-
-      case DELETE_COMMENT:
-        return state.map(post =>
-            post.id === action.postId ?
-              Object.assign({}, post, {comments: post.comments.filter(comment => comment.id !== action.commentId)}) :
-              post
-        );
 
     default:
       return state;

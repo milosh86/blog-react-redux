@@ -32,10 +32,10 @@ class Blog extends Component {
   };
 
   _extractTags() {
-    let sortedTags = _.uniq(this.props.posts.reduce(
-      (acc, curr) => acc.concat(curr.tags),
-      []
-      ))
+    let sortedTags = _.uniq(this.props.posts
+      .reduce((acc, curr) =>
+        acc.concat(curr.tags),
+      []))
       .sort();
 
     return ['all'].concat(sortedTags);

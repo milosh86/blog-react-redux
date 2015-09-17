@@ -20,7 +20,7 @@ class PostContainer extends Component {
 
   onNewComment = (comment) => {
     let {postIds, params, dispatch} = this.props;
-    dispatch(postActions.createComment(comment, postIds[params.permalink]));
+    dispatch(postActions.createComment({data: comment, postId: postIds[params.permalink]}));
   };
 
   render() {
