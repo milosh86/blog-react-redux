@@ -19,8 +19,8 @@ class PostContainer extends Component {
   };
 
   onNewComment = (comment) => {
-    let {postIds, permalink, dispatch} = this.props;
-    dispatch(postActions.createComment(comment, postIds[permalink]));
+    let {postIds, params, dispatch} = this.props;
+    dispatch(postActions.createComment(comment, postIds[params.permalink]));
   };
 
   render() {
@@ -31,7 +31,7 @@ class PostContainer extends Component {
        post.length ?
          <Post
            onPostClick={(perma) => Post.onPostClick(history, perma)}
-           onNewComment={(comment) => this.props.onNewComment(comment)}
+           onNewComment={(comment) => this.onNewComment(comment)}
            {...post[0]}/> :
          <div>'Could not find requested post'</div>
     );
