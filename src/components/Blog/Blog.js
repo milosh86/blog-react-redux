@@ -32,7 +32,13 @@ class Blog extends Component {
   };
 
   _extractTags() {
-    return _.uniq(this.props.posts.reduce((acc, curr) => acc.concat(curr.tags), [])).sort();
+    let sortedTags = _.uniq(this.props.posts.reduce(
+      (acc, curr) => acc.concat(curr.tags),
+      []
+      ))
+      .sort();
+
+    return ['all'].concat(sortedTags);
   }
 
   static onArchiveItemClick(item) {

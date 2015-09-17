@@ -33,7 +33,9 @@ class PostListContainer extends Component {
     let filtered;
 
     if (tag) {
-      filtered = posts.filter(post => _.includes(post.tags, tag.trim()));
+      filtered = tag === 'all' ?
+        posts :
+        posts.filter(post => _.includes(post.tags, tag.trim()));
     } else if (month) {
       filtered = posts.filter(post => moment(post.date).format('MMMM YYYY').replace(' ','-') === month);
     } else {

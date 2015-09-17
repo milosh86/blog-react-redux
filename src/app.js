@@ -14,37 +14,25 @@ import configureStore from './store/configureStore.js';
 
 const store = configureStore();
 
-let routes = (
-  <Router history={history}>
-    <Route path='/' component={BlogContainer}>
-      <IndexRoute component={PostListContainer} />
-      <Route name="post" path="post/:permalink" component={PostContainer}>
-        <IndexRoute component={NotFound} />
+function getRoutes() {
+  return (
+    <Router history={history}>
+      <Route path='/' component={BlogContainer}>
+        <IndexRoute component={PostListContainer}/>
+        <Route path="post/:permalink" component={PostContainer} />
+        <Route path="post(/)" component={NewPostContainer} />
+        <Route path="newpost" component={NewPostContainer}/>
+        <Route path="tag/:tag" component={PostListContainer}/>
+        <Route path="archive/:month" component={PostListContainer}/>
+        <Route path="*" component={NotFound}/>
       </Route>
-      <Route path="newpost" component={NewPostContainer} />
-      <Route path="tag/:tag" component={PostListContainer} />
-      <Route path="archive/:month" component={PostListContainer} />
-      <Route path="*" component={NotFound} />
-    </Route>
-  </Router>
-);
+    </Router>
+  );
+}
 
 React.render(
   <Provider store={store}>
-    {() =>
-      <Router history={history}>
-        <Route path='/' component={BlogContainer}>
-          <IndexRoute component={PostListContainer} />
-          <Route name="post" path="post/:permalink" component={PostContainer}>
-            <IndexRoute component={NotFound} />
-          </Route>
-          <Route path="newpost" component={NewPostContainer} />
-          <Route path="tag/:tag" component={PostListContainer} />
-          <Route path="archive/:month" component={PostListContainer} />
-          <Route path="*" component={NotFound} />
-        </Route>
-      </Router>
-    }
+    {getRoutes}
   </Provider>,
   document.getElementById('content')
 );
