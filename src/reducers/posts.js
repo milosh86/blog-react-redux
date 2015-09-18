@@ -1,4 +1,4 @@
-import {CREATE_POST, UPDATE_POST, DELETE_POST, CREATE_COMMENT, UPDATE_COMMENT, DELETE_COMMENT} from '../constants/BlogConstants';
+import {CREATE_POST, UPDATE_POST, REMOVE_POST, CREATE_COMMENT, UPDATE_COMMENT, REMOVE_COMMENT} from '../constants/BlogConstants';
 
 let someDate = new Date;
 someDate.setMonth(1);
@@ -63,9 +63,9 @@ const initialState = [
   }
 ];
 
-let _id = 3;
-let _commentId = 5;
-
+//***************************************
+// redux-devtools replay all actions from the start for each new action, so don't use any state in here (i.e. post and comment ids). Instead generate IDs before dispatching action!
+//***************************************
 
 function comments(state = [], action) {
   switch (action.type) {
@@ -91,7 +91,6 @@ export default function posts(state = initialState, action) {
     case CREATE_POST:
       return [...state, {
         ...action.post,
-        id: _id++,
         permalink: action.post.title.replace(/\s/g, '-'),
         comments: [],
         date: new Date
@@ -104,12 +103,12 @@ export default function posts(state = initialState, action) {
           post
       );
 
-    case DELETE_POST:
+    case REMOVE_POST:
       return state.filter(post => post.id !== action.id);
 
     case CREATE_COMMENT:
     case UPDATE_COMMENT:
-    case DELETE_COMMENT:
+    case REMOVE_COMMENT:
       return state.map(post =>
         post.id === action.postId ?
           Object.assign({}, post, {comments: comments(post.comments, action)}) :

@@ -12,6 +12,8 @@ import NotFound from './components/NotFound/NotFound.js';
 import history from './history.js';
 import configureStore from './store/configureStore.js';
 
+import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
+
 const store = configureStore();
 
 function getRoutes() {
@@ -19,8 +21,8 @@ function getRoutes() {
     <Router history={history}>
       <Route path='/' component={BlogContainer}>
         <IndexRoute component={PostListContainer}/>
-        <Route path="post/:permalink" component={PostContainer} />
-        <Route path="post(/)" component={NewPostContainer} />
+        <Route path="post/:permalink" component={PostContainer}/>
+        <Route path="post(/)" component={NewPostContainer}/>
         <Route path="newpost" component={NewPostContainer}/>
         <Route path="tag/:tag" component={PostListContainer}/>
         <Route path="archive/:month" component={PostListContainer}/>
@@ -31,9 +33,14 @@ function getRoutes() {
 }
 
 React.render(
-  <Provider store={store}>
-    {getRoutes}
-  </Provider>,
+  <div>
+    <Provider store={store}>
+      {getRoutes}
+    </Provider>
+    <DebugPanel top right bottom>
+      <DevTools store={store} monitor={LogMonitor} />
+    </DebugPanel>
+  </div>,
   document.getElementById('content')
 );
 

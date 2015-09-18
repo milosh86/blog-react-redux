@@ -6,6 +6,8 @@ import * as postActions from '../../actions/posts.js';
 
 import history from '../../history.js';
 
+let _commentId = 4;
+
 class PostContainer extends Component {
   static displayName = 'PostContainer';
 
@@ -19,6 +21,8 @@ class PostContainer extends Component {
   };
 
   onNewComment = (comment) => {
+    _commentId++;
+    comment.id = _commentId;
     let {postIds, params, dispatch} = this.props;
     dispatch(postActions.createComment({data: comment, postId: postIds[params.permalink]}));
   };
