@@ -45,11 +45,29 @@ class PostContainer extends Component {
 function select(state) {
   return {
     posts: state.posts,
+    // if posts list get large and this become expensive operation, "reselect" library offers memoized selectors, see below...
     postIds: state.posts.reduce((acc, post) => {
       acc[post.permalink] = post.id;
       return acc;
     }, {})
   };
 }
+
+/*
+function getPostIds(posts) {
+  return posts.reduce((acc, post) => {
+    acc[post.permalink] = post.id;
+    return acc;
+  }, {})
+}
+
+let postsSelector = reselect.createSelector([(state) => state.posts], (posts) => {
+  return {
+    posts: posts,
+    postIds: getPostIds(posts)
+  };
+});
+
+ */
 
 export default connect(select)(PostContainer);
