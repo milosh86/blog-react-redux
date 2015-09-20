@@ -15,3 +15,4 @@
 * server side rendering of React components
 * Full website with backend for storing and handling Blog data
 * Relay, Falcor?
+* Migrate to React 0.14
