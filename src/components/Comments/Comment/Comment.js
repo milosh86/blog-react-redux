@@ -1,4 +1,6 @@
-import './Comment.css';
+if (process.env.__BROWSER__) {
+  import './Comment.css';
+}
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
 

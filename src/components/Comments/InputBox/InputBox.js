@@ -1,4 +1,6 @@
-import './InputBox.css';
+if (process.env.__BROWSER__) {
+  import './InputBox.css';
+}
 import React, {Component, PropTypes} from 'react';
 
 class InputBox extends Component {

@@ -1,4 +1,6 @@
-import './Categories.css';
+if (process.env.__BROWSER__) {
+  import './Categories.css';
+}
 import React, {Component, PropTypes} from 'react';
 import Filter from '../Filter/Filter.js';
 

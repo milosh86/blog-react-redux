@@ -1,6 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var definePlugin = new webpack.DefinePlugin({
+  "process.env": {
+    __BROWSER__: JSON.stringify(true)
+  }
+});
+
 module.exports = {
   devtool: 'eval',
   //context: path.join(__dirname, 'src'),
@@ -15,7 +21,8 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    definePlugin
   ],
   module: {
     loaders: [

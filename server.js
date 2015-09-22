@@ -1,8 +1,12 @@
+require('./babelHook');
+
 var webpack = require('webpack');
 var path = require('path');
 var express = require('express');
 
 var config = require('./webpack.config');
+
+var serverRendering = require('./src/serverRendering');
 
 var app = express();
 var compiler = webpack(config);
@@ -15,7 +19,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  serverRendering.render(req, res);
+  //res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(3000, 'localhost', function (err, result) {

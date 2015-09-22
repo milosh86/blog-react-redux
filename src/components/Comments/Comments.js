@@ -1,4 +1,6 @@
-import './Comments.css';
+if (process.env.__BROWSER__) {
+  import './Comments.css';
+}
 import Comment from './Comment/Comment.js';
 import InputBox from './InputBox/InputBox.js';
 import React, {Component, PropTypes} from 'react';

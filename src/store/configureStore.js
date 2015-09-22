@@ -4,7 +4,8 @@ import rootReducer from '../reducers';
 import {devTools, persistState} from 'redux-devtools';
 
 export default function configureStore(initialState) {
-  let createStoreDev = compose(devTools(), persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)))(createStore);
+
+  let createStoreDev = compose(devTools())(createStore);
 
   const store = createStoreDev(rootReducer, initialState);
 

@@ -1,4 +1,6 @@
+if (process.env.__BROWSER__) {
 import './Filter.css';
+}
 import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 

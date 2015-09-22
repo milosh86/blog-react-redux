@@ -1,4 +1,6 @@
+if (process.env.__BROWSER__) {
 import './NewPost.css';
+}
 import React, {Component} from 'react';
 
 class NewPost extends Component {
