@@ -1,6 +1,4 @@
-if (process.env.__BROWSER__) {
 import './Post.css';
-}
 import Comments from '../Comments/Comments.js';
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';

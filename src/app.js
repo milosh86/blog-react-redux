@@ -31,6 +31,9 @@ React.render(
   document.getElementById('content')
 );
 
+let serverStyles = document.getElementById('blog-server-styles');
+serverStyles && document.getElementsByTagName('head')[0].removeChild(serverStyles);
+
 
 
 

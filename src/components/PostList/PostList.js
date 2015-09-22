@@ -1,6 +1,4 @@
-if (process.env.__BROWSER__) {
 import './PostList.css';
-}
 import Post from '../Post/Post.js';
 import React, {Component} from 'react';
 import history from '../../history.js';

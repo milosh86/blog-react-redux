@@ -1,6 +1,5 @@
-if (process.env.__BROWSER__) {
-  import './Blog.css';
-}
+import './Blog.css';
+
 
 import React, {Component, PropTypes} from 'react';
 import history from '../../history.js';

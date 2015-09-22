@@ -1,4 +1,4 @@
-require('./babelHook');
+//require('./babelHook');
 
 var webpack = require('webpack');
 var path = require('path');
@@ -6,14 +6,14 @@ var express = require('express');
 
 var config = require('./webpack.config');
 
-var serverRendering = require('./src/serverRendering');
+var serverRendering = require('./out/serverRendering-gen');
 
 var app = express();
-var compiler = webpack(config);
+var compiler = webpack(config[0]);
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
-  publicPath: config.output.publicPath
+  publicPath: config[0].output.publicPath
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));

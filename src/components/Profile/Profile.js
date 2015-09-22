@@ -1,6 +1,4 @@
-if (process.env.__BROWSER__) {
 import './Profile.css';
-}
 import React, {Component, PropTypes} from 'react';
 
 class Profile extends Component {
