@@ -6,7 +6,7 @@
  In order to render those components on server side, we must transpile it first: 
  
  **Option 1:** Babel 'Require Hook' is used for the job. http://babeljs.io/docs/usage/require/
- ```javscript
+ ```javascript
  // babelHook.js
  // load babel config and require it
  var fs = require('fs');
@@ -23,13 +23,19 @@
  
  require('babel/register')(config);
  ```
+ ```javascript
+ // server.js
+ require('./babelHook');
+ // ... other requires that will be transpiled
+ // ... other code that is not transpiled
+ ```
   
  **Note:** Require hook method transpiles all files required after `require("babel/register");`, but not the file itself! 
  
 ### CSS loaded with `require` using webpack
  Webpack allow us to require css files as modules, which is great, but we cannot render a component which requires css on the server side.
  One way to work around this issue is to skip requiring CSSs on the server by using DefinePlugin: 
- ```
+ ```javascript
  if (process.env.__BROWSER__) {
     import './Component.css';
  }
