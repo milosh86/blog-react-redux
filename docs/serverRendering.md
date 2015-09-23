@@ -33,8 +33,10 @@
  **Note:** Require hook method transpiles all files required after `require("babel/register");`, but not the file itself! 
  
  **Option 2:** ES6 transpiling done with webpack and babel-loader
+ 
  We can setup another webpack config for server side code (it is in the same file 'webpack.config.js') and use it only for code related to rendering React components.
  In other words, we will generate another bundle that will be used as black box that returns rendered app.
+ 
  See `webpack.config.js`
  
 ### CSS loaded with `require` using webpack
@@ -58,5 +60,6 @@
 ### React router
 ### history/lib/createBrowserHistory if used in components for navigation
   Use Link component for navigation instead of history object
- ### Any DOM related and browser specific API mentioning in components, i.e. `window`
+### Any DOM related and browser specific API mentioning in components, i.e. `window`
+ 
  

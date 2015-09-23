@@ -7,7 +7,7 @@
 ##What's in?
 * React components (smart/containers and dumb/stateless)
 * Redux state container + react-redux binding
-* Routing with react-router
+* Routing with react-router 1.0
 * Webpack dev middleware for Express instead of dev-server
 * Hot reloading + Red Box
 * Redux Dev Tools
@@ -24,3 +24,4 @@
 - [ ] Webpack production config
 - [ ] Relay, Falcor?
 - [ ] Migrate to React 0.14
+- [ ] react-transform-render-visualizer - visualize component rendering
