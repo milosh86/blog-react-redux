@@ -21,5 +21,6 @@
 ## TODO
 - [x] server side rendering
 - [ ] Full website with backend for storing and handling Blog data
+- [ ] Webpack production config
 - [ ] Relay, Falcor?
 - [ ] Migrate to React 0.14
