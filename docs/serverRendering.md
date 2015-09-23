@@ -2,9 +2,29 @@
 ## Problems
 
 ### ES6 transpilation
- React components are written with ES6 and transpiled with webpack and babel-loader.
- In order to render those components on server side, we must transpile it first. Babel 'Require Hook' is used for the job. http://babeljs.io/docs/usage/require/
- Note: Require hook method transpiles all files required after `require("babel/register");`, but not the file itself! 
+ React components are written in ES6 and transpiled with webpack and babel-loader.
+ In order to render those components on server side, we must transpile it first: 
+ 
+ **Option 1:** Babel 'Require Hook' is used for the job. http://babeljs.io/docs/usage/require/
+ ```javscript
+ // babelHook.js
+ // load babel config and require it
+ var fs = require('fs');
+ 
+ var babelrc = fs.readFileSync('./.babelrc');
+ var config;
+ 
+ try {
+   config = JSON.parse(babelrc);
+ } catch (err) {
+   console.error('==>     ERROR: Error parsing your .babelrc.');
+   console.error(err);
+ }
+ 
+ require('babel/register')(config);
+ ```
+  
+ **Note:** Require hook method transpiles all files required after `require("babel/register");`, but not the file itself! 
  
 ### CSS loaded with `require` using webpack
  Webpack allow us to require css files as modules, which is great, but we cannot render a component which requires css on the server side.
