@@ -6,13 +6,20 @@
 
 ##What's in?
 * React components (smart/containers and dumb/stateless)
-* Module bundling and Babel transpilation with Webpack
-* Hot reloading
-* Redux state container
-* React router
+* Redux state container + react-redux binding
+* Routing with react-router
+* Webpack dev middleware for Express instead of dev-server
+* Hot reloading + Red Box
+* Redux Dev Tools
+* Webpack:
+    - Module bundling
+    - Babel transpilation
+    - Loading styles and other assets with require
+    - Preparing server for rendering
+    - Dev tools
 
 ## TODO
-* server side rendering of React components
-* Full website with backend for storing and handling Blog data
-* Relay, Falcor?
-* Migrate to React 0.14
+- [x] server side rendering
+- [ ] Full website with backend for storing and handling Blog data
+- [ ] Relay, Falcor?
+- [ ] Migrate to React 0.14
