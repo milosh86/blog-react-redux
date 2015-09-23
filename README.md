@@ -23,5 +23,6 @@
 - [ ] Full website with backend for storing and handling Blog data
 - [ ] Webpack production config
 - [ ] Relay, Falcor?
+- [ ] Immutable.js or Mori
 - [ ] Migrate to React 0.14
 - [ ] react-transform-render-visualizer - visualize component rendering

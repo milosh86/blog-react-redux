@@ -1,7 +1,11 @@
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
+let history;
+
 if(process.env.__BROWSER__) {
-  export default createBrowserHistory();
+  history = createBrowserHistory();
 } else {
-  export default {};
+  history = {}; // createBrowserHistory is supported only in browser
 }
+
+export default history;

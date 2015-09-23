@@ -92,8 +92,7 @@ export default function posts(state = initialState, action) {
       return [...state, {
         ...action.post,
         permalink: action.post.title.replace(/\s/g, '-'),
-        comments: [],
-        date: new Date
+        comments: []
       }];
 
     case UPDATE_POST:

@@ -13,6 +13,7 @@ class NewPostContainer extends Component {
   onNewPost = (post) => {
     _id++;
     post.id = _id;
+    post.date = new Date;
     this.props.dispatch(postActions.createPost(post));
     history.pushState(null, '/');
   }
