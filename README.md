@@ -20,7 +20,7 @@
 
 ## TODO
 - [x] server side rendering
-- [ ] Full website with backend for storing and handling Blog data
+- [ ] Full website with backend for storing and handling Blog data (MongoDB or CouchDB)
 - [ ] Webpack production config
 - [ ] Relay, Falcor?
 - [ ] Immutable.js or Mori

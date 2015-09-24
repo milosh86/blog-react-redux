@@ -68,10 +68,10 @@ In short:
   4. render RoutingContext component to string and send it back to client - A RoutingContext renders the component tree for a given router state and sets the history object and the current location in context.
   
 ### history/lib/createBrowserHistory if used for navigation outside of components
-  If this is the requirement, we must skip using of createBrowserHistory on server. **See src/history.js**
+If this is the requirement, we must skip using of createBrowserHistory on server. **See src/history.js**
   
-  Other options to consider for transitions:
-    * Link component
+Other options to consider for transitions:
+   * Link component
     * History mixin
     * history object is passed to top level components through props - we could pass it further down
   
