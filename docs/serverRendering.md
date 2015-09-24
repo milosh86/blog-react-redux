@@ -1,4 +1,5 @@
 # Server side rendering
+Great article about benefits of server side rendering by Tom Dale - [You’re Missing the Point of Server-Side Rendered JavaScript Apps](http://tomdale.net/2015/02/youre-missing-the-point-of-server-side-rendered-javascript-apps/)
 ## Problems
 
 ### ES6 transpilation

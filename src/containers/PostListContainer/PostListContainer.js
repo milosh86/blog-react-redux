@@ -43,7 +43,7 @@ class PostListContainer extends Component {
     }
 
     // sort from the latest to the oldest - Posts that came from server are in string format
-    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+    filtered.sort((a, b) => b.date - a.date);
 
     return (
       <PostList

@@ -42,8 +42,9 @@ class Blog extends Component {
     return ['all'].concat(sortedTags);
   }
 
-  static onArchiveItemClick(item) {
-    history.pushState(null, `/archive/${item.replace(' ', '-')}`);
+  onArchiveItemClick = (item) => {
+    console.dir(this.props);
+    this.props.history.pushState(null, `/archive/${item.replace(' ', '-')}`);
   }
 
   static onCategoryItemClick(item) {
@@ -63,7 +64,7 @@ class Blog extends Component {
 
           <Archives
             title={this.props.archiveTitle}
-            onItemClick={Blog.onArchiveItemClick}
+            onItemClick={this.onArchiveItemClick}
             posts={this.props.posts} />
 
           <Categories

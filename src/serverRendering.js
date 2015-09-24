@@ -1,25 +1,37 @@
 import React from 'react';
-import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
+import {RoutingContext, match} from 'react-router'
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import BlogApp from './reducers';
+import createLocation from 'history/lib/createLocation';
+
+import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
 import {getRoutes} from './routes';
 import configureStore from './store/configureStore.js';
-import createLocation  from 'history/lib/createLocation';
-import { RoutingContext, match } from 'react-router'
 
-import fs from 'fs';
-import path from 'path';
 
-module.exports.render = function (req, res) {
+
+
+export let render = function (req, res) {
   let location = createLocation(req.url);
   let routes = getRoutes();
 
   match({routes, location}, function (error, redirectLocation, renderProps) {
-    if (redirectLocation) res.redirect(301, redirectLocation.pathname + redirectLocation.search);
-    else if (error) res.send(500, error.messge);
-    else if (renderProps === null) res.send(404, 'Not Found');
-    else res.send(renderFullPage(renderProps));
+
+    if (redirectLocation) {
+      res.redirect(301, redirectLocation.pathname + redirectLocation.search);
+    }
+
+    else if (error) {
+      res.send(500, error.message);
+    }
+
+    else if (renderProps === null) {
+      res.send(404, 'Not Found');
+    }
+
+    else {
+      res.send(renderFullPage(renderProps));
+    }
   });
 }
 
@@ -40,20 +52,18 @@ function renderFullPage(renderProps) {
   const html = React.renderToString(App);
   const initialState = store.getState();
   // TODO: make webpack plugin that will load all css in memory ... if possible
-  var styleContent = fs.readFileSync(path.resolve('.', 'out/styles.css'));
-// <link rel="stylesheet" type="text/css" href="/static/styles.css" />
   return `
     <!DOCTYPE html>
     <html>
       <head>
         <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
         <title>Blog App</title>
+        <link rel="stylesheet" type="text/css" href="/static/styles.css" id="blog-server-styles" />
         <style>
           body {
             font-family: "Consolas", monospace;
           }
         </style>
-        <style id="blog-server-styles">${styleContent}</style>
       </head>
       <body>
         <h1>Blog App made with React and Redux (in progress)</h1>
