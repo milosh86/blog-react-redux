@@ -3,7 +3,7 @@ import rootReducer from '../reducers';
 
 import {devTools, persistState} from 'redux-devtools';
 
-export default function configureStore(initialState) {
+export default function (initialState) {
 
   let createStoreDev = compose(devTools())(createStore);
 

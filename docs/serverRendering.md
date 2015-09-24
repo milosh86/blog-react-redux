@@ -59,8 +59,22 @@ Great article about benefits of server side rendering by Tom Dale - [You’re Mi
    5. in the client entry point, remove added/inserted styles, because the same styles are added again from the bundle.js
 
 ### React router
-### history/lib/createBrowserHistory if used in components for navigation
-  Use Link component for navigation instead of history object
+[See offitial docs](https://github.com/rackt/react-router/blob/master/docs/guides/advanced/ServerRendering.md)
+
+In short:
+  1. get the current path from the request (req.path), and wrap it with history/lib/createLocation
+  2. get the application routes
+  3. call match(location, routes) to match routes to location without rendering
+  4. render RoutingContext component to string and send it back to client - A RoutingContext renders the component tree for a given router state and sets the history object and the current location in context.
+  
+### history/lib/createBrowserHistory if used for navigation outside of components
+  If this is the requirement, we must skip using of createBrowserHistory on server. **See src/history.js**
+  
+  Other options to consider for transitions:
+    - Link component
+    - History mixin
+    - history object is passed to top level components through props - we could pass it further down
+  
 ### Any DOM related and browser specific API mentioning in components, i.e. `window`
  
  
