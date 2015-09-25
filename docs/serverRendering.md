@@ -71,9 +71,10 @@ In short:
 If this is the requirement, we must skip using of createBrowserHistory on server. **See src/history.js**
   
 Other options to consider for transitions:
-   * Link component
-    * History mixin
-    * history object is passed to top level components through props - we could pass it further down
+  - Link component
+  - History mixin
+  - history object is passed to top level components through props - we could pass it further down
+
   
 ### Any DOM related and browser specific API mentioning in components, i.e. `window`
  
