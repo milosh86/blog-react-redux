@@ -1,6 +1,6 @@
 'use strict';
 var Promise = require('bluebird');
-var db = require('./../react-redux-blog/blog-react-redux/src/backend/dbInterface');
+var db = require('./dbInterface');
 
 console.log('Running main...')
 
