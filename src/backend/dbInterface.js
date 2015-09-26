@@ -60,5 +60,7 @@ function deleteComment(postId, commentId) {
 
 module.exports = {
   createProfile: createProfile,
-  updateProfile: updateProfile
+  readProfile: readProfile,
+  updateProfile: updateProfile,
+  deleteProfile: deleteProfile
 }

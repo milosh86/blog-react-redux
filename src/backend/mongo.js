@@ -19,7 +19,7 @@ let execDbOperation = Promise.coroutine(function* (collectionName, operation, ar
   let collection = db.collection(collectionName);
 
   try {
-    yield collection[operation].apply(collection, args);
+    return yield collection[operation].apply(collection, args);
   }
 
   catch (e) {
@@ -32,11 +32,74 @@ module.exports = {
 
   createProfile: Promise.coroutine(function* (userId, profile) {
     profile._id = userId;
-    yield execDbOperation('profiles', 'insertAsync', [profile]);
+    return yield execDbOperation('profiles', 'insertAsync', [profile]);
   }),
 
   updateProfile: Promise.coroutine(function* (userId, newData) {
-    yield execDbOperation('profiles', 'updateAsync', [{_id: userId}, newData]);
+    return yield execDbOperation('profiles', 'updateAsync', [{_id: userId}, newData]);
+  }),
+
+  deleteProfile: Promise.coroutine(function* (userId) {
+    return yield execDbOperation('profiles', 'removeAsync', [{_id: userId}]);
+  }),
+
+  readProfile: Promise.coroutine(function* (userId) {
+    return yield execDbOperation('profiles', 'findOneAsync', [{_id: userId}]);
+  }),
+
+  ///////////////////////////////
+
+  createPost: Promise.coroutine(function* (post) {
+    return yield execDbOperation('posts', 'insertAsync', [post]);
+  }),
+
+  updatePost: Promise.coroutine(function* (permalink, newData) {
+    return yield execDbOperation('posts', 'updateAsync', [{permalink: permalink}, {$set: {body: newData}}]);
+  }),
+
+  deletePost: Promise.coroutine(function* (permalink) {
+    return yield execDbOperation('posts', 'removeAsync', [{permalink: permalink}]);
+  }),
+
+  readPost: Promise.coroutine(function* (permalink) {
+    return yield execDbOperation('posts', 'findOneAsync', [{permalink: permalink}]);
+  }),
+
+  readPostsByTag: Promise.coroutine(function* (tag) {
+    return yield execDbOperation('posts', 'findAsync', [{tags: tag}]);
+  }),
+
+  readAllPosts: Promise.coroutine(function* () {
+    return yield execDbOperation('posts', 'findAsync', []);
+  }),
+
+  createComment: Promise.coroutine(function* (permalink, comment) {
+    return yield execDbOperation('posts', 'updateAsync', [{permalink: permalink}, {$push: {comments: comment}}]);
+  }),
+
+  updateComment: Promise.coroutine(function* (permalink, commentId, newComment) {
+    return yield execDbOperation('posts', 'updateAsync', [
+      {
+        permalink: permalink,
+        comments: {_id: commentId}
+      },
+      {
+        $set: {'comments.$': newComment}
+      }
+    ]);
+  }),
+
+  deleteComment: Promise.coroutine(function* (permalink, commentId) {
+    return yield execDbOperation('posts', 'updateAsync',
+      [{permalink: permalink},
+        {
+          $pull: {
+            comments: {
+              _id: commentId
+            }
+          }
+        }]
+    );
   })
 
 };
