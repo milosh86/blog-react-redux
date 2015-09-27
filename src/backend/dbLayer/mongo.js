@@ -66,7 +66,7 @@ module.exports = {
   }),
 
   readPostsByTag: Promise.coroutine(function* (tag) {
-    return yield execDbOperation('posts', 'findAsync', [{tags: tag}]);
+    return (yield execDbOperation('posts', 'findAsync', [{tags: tag}])).toArray();
   }),
 
   readAllPosts: Promise.coroutine(function* () {
