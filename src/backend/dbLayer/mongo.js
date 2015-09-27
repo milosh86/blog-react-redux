@@ -43,8 +43,8 @@ module.exports = {
     return yield execDbOperation('profiles', 'removeAsync', [{_id: userId}]);
   }),
 
-  readProfile: Promise.coroutine(function* (userId) {
-    return yield execDbOperation('profiles', 'findOneAsync', [{_id: userId}]);
+  readProfile: Promise.coroutine(function* () {
+    return yield execDbOperation('profiles', 'findOneAsync', []);
   }),
 
   ///////////////////////////////
@@ -70,7 +70,8 @@ module.exports = {
   }),
 
   readAllPosts: Promise.coroutine(function* () {
-    return yield execDbOperation('posts', 'findAsync', []);
+    let posts = yield execDbOperation('posts', 'findAsync', []);
+    return posts.toArray();
   }),
 
   createComment: Promise.coroutine(function* (permalink, comment) {

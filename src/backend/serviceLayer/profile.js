@@ -1,6 +1,6 @@
 'use strict';
 
-var dbApi = require('./mongo');
+var dbApi = require('./../dbLayer/mongo');
 
 // all functions have to return promise
 

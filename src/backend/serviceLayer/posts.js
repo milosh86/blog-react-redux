@@ -1,8 +1,12 @@
 'use strict';
 
-var dbApi = require('./mongo');
+var dbApi = require('./../dbLayer/mongo');
 
 // all functions have to return promise
+
+// service layer - db abstraction
+// app will use service layer instead of working directly with db api, so replacing db would be easy
+// there are 2 types of service layer APIs - low level, which maps one-to-one to db layer api, and higher level which use low level api to build custom app logic
 
 function createPost(post) {
   // validation goes here...
@@ -22,7 +26,7 @@ function readAllPosts() {
 }
 
 function updatePost(postId, newData) {
-  return dbApi.updatePost(userId, newData);
+  return dbApi.updatePost(postId, newData);
 }
 
 function deletePost(userId) {
