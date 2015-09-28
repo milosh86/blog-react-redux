@@ -7,7 +7,7 @@ var Promise = require('bluebird');
 module.exports = {
   getAppData: Promise.coroutine(function* () {
     let allPosts = posts.readAllPosts();
-    let myProfile = profile.readProfile();
+    let myProfile = profile.readProfile('mdz');
 
     return {
       profile: yield myProfile,

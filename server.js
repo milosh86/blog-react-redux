@@ -1,3 +1,4 @@
+'use strict';
 var webpack = require('webpack');
 var path = require('path');
 var express = require('express');
@@ -5,6 +6,10 @@ var express = require('express');
 var config = require('./webpack.config');
 
 var serverRendering = require('./out/serverRendering-gen');
+var collector = require('./src/backend/serviceLayer/collector.js');
+var Promise = require('bluebird');
+
+///////////////////////////////////////////////////////////////////
 
 var app = express();
 var compiler = webpack(config[0]);
@@ -19,8 +24,10 @@ app.use(require('webpack-hot-middleware')(compiler));
 app.use('/static', express.static('out'));
 
 app.get('*', function (req, res) {
-  serverRendering.render(req, res);
-  //res.sendFile(path.join(__dirname, 'index.html'));
+  Promise.coroutine(function* () {
+    let data = yield collector.getAppData();
+    serverRendering.render(req, res, data);
+  })();
 });
 
 app.listen(3000, 'localhost', function (err, result) {

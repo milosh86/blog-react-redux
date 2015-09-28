@@ -43,26 +43,27 @@ module.exports = {
     return yield execDbOperation('profiles', 'removeAsync', [{_id: userId}]);
   }),
 
-  readProfile: Promise.coroutine(function* () {
-    return yield execDbOperation('profiles', 'findOneAsync', []);
+  readProfile: Promise.coroutine(function* (userId) {
+    return yield execDbOperation('profiles', 'findOneAsync', [{_id: userId}]);
   }),
 
   ///////////////////////////////
 
   createPost: Promise.coroutine(function* (post) {
+    post._id = post.permalink;
     return yield execDbOperation('posts', 'insertAsync', [post]);
   }),
 
   updatePost: Promise.coroutine(function* (permalink, newData) {
-    return yield execDbOperation('posts', 'updateAsync', [{permalink: permalink}, {$set: {body: newData}}]);
+    return yield execDbOperation('posts', 'updateAsync', [{_id: permalink}, {$set: {body: newData}}]);
   }),
 
   deletePost: Promise.coroutine(function* (permalink) {
-    return yield execDbOperation('posts', 'removeAsync', [{permalink: permalink}]);
+    return yield execDbOperation('posts', 'removeAsync', [{_id: permalink}]);
   }),
 
   readPost: Promise.coroutine(function* (permalink) {
-    return yield execDbOperation('posts', 'findOneAsync', [{permalink: permalink}]);
+    return yield execDbOperation('posts', 'findOneAsync', [{_id: permalink}]);
   }),
 
   readPostsByTag: Promise.coroutine(function* (tag) {
@@ -75,13 +76,13 @@ module.exports = {
   }),
 
   createComment: Promise.coroutine(function* (permalink, comment) {
-    return yield execDbOperation('posts', 'updateAsync', [{permalink: permalink}, {$push: {comments: comment}}]);
+    return yield execDbOperation('posts', 'updateAsync', [{_id: permalink}, {$push: {comments: comment}}]);
   }),
 
   updateComment: Promise.coroutine(function* (permalink, commentId, newComment) {
     return yield execDbOperation('posts', 'updateAsync', [
       {
-        permalink: permalink,
+        _id: permalink,
         comments: {_id: commentId}
       },
       {
@@ -92,7 +93,7 @@ module.exports = {
 
   deleteComment: Promise.coroutine(function* (permalink, commentId) {
     return yield execDbOperation('posts', 'updateAsync',
-      [{permalink: permalink},
+      [{_id: permalink},
         {
           $pull: {
             comments: {

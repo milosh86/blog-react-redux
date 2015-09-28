@@ -10,8 +10,7 @@ import configureStore from './store/configureStore.js';
 
 
 
-
-export let render = function (req, res) {
+export let render = function (req, res, initialData) {
   let location = createLocation(req.url);
   let routes = getRoutes();
 
@@ -30,13 +29,13 @@ export let render = function (req, res) {
     }
 
     else {
-      res.send(renderFullPage(renderProps));
+      res.send(renderFullPage(renderProps, initialData));
     }
   });
 }
 
-function renderFullPage(renderProps) {
-  const store = configureStore();
+function renderFullPage(renderProps, initialState) {
+  const store = configureStore(initialState);
 
   let App = (
     <div id="app">
@@ -50,7 +49,6 @@ function renderFullPage(renderProps) {
   );
 
   const html = React.renderToString(App);
-  const initialState = store.getState();
   // TODO: make webpack plugin that will load all css in memory ... if possible
   return `
     <!DOCTYPE html>

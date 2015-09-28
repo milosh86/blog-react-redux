@@ -6,7 +6,7 @@ const initialState = {
   punchLine: 'JavaScript Engineer @PSTech'
 };
 
-export default function posts(state = initialState, action) {
+export default function posts(state = {}, action) {
   switch (action.type) {
     case UPDATE_PROFILE:
       return Object.assign({}, state, action.profile);

@@ -5,7 +5,7 @@ someDate.setMonth(1);
 
 const initialState = [
   {
-    id: 1,
+    _id: 'post-1',
     title: 'The post number 1',
     author: 'Milos Dzepina',
     date: new Date(),
@@ -29,7 +29,7 @@ const initialState = [
 
   },
   {
-    id: 2,
+    _id: 'post-2',
     title: 'The post number 2',
     author: 'Milos Dzepina',
     date: someDate,
@@ -86,7 +86,7 @@ function comments(state = [], action) {
   }
 }
 
-export default function posts(state = initialState, action) {
+export default function posts(state = {}, action) {
   switch (action.type) {
     case CREATE_POST:
       return [...state, {

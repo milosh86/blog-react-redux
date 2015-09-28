@@ -7,8 +7,11 @@ var collector = require('./serviceLayer/collector')
 
 console.log('Running main...')
 
-Promise.coroutine(function* () {
-  yield posts.deletePost('test');
-  let data = yield collector.getAppData();
-  return data
-})().then((data) => {console.log('DATA: ', data)});
+collector.getAppData().then((data) => {console.log(data)})
+
+//Promise.coroutine(function* () {
+//  yield posts.deletePost('test');
+//  let data = yield collector.getAppData();
+//  return data
+//})().then((data) => {console.log('DATA: ', data)});
+

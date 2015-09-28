@@ -25,26 +25,26 @@ function readAllPosts() {
   return dbApi.readAllPosts();
 }
 
-function updatePost(postId, newData) {
-  return dbApi.updatePost(postId, newData);
+function updatePost(permalink, newData) {
+  return dbApi.updatePost(permalink, newData);
 }
 
-function deletePost(userId) {
-  return dbApi.deletePost(userId);
+function deletePost(permalink) {
+  return dbApi.deletePost(permalink);
 }
 
 //////////////////////////////////////////////////
 
-function createComment(postId, comment) {
-  return dbApi.createComment(postId, comment);
+function createComment(permalink, comment) {
+  return dbApi.createComment(permalink, comment);
 }
 
-function updateComment(postId, newData) {
-  return dbApi.createComment(postId, newData);
+function updateComment(permalink, newData) {
+  return dbApi.createComment(permalink, newData);
 }
 
-function deleteComment(postId, commentId) {
-  return dbApi.deleteComment(postId, commentId);
+function deleteComment(permalink, commentId) {
+  return dbApi.deleteComment(permalink, commentId);
 }
 
 //////////////////////////////////////////////////
