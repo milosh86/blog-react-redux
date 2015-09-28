@@ -1,14 +1,47 @@
 var path = require('path');
+var fs = require('fs');
 var webpack = require('webpack');
 
-var definePlugin = new webpack.DefinePlugin({
+var definePluginClient = new webpack.DefinePlugin({
   "process.env": {
     __BROWSER__: JSON.stringify(true)
   }
 });
 
+var definePluginServer = new webpack.DefinePlugin({
+  "process.env": {
+    BABEL_ENV: JSON.stringify("server")
+  }
+});
+
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+// babel transforms doesn't work in server rendering part, so use it only for client side code
+// .babelrc seems to have the highest priority during transpiling with babel-loader
+var babelrc = fs.readFileSync('./.babelrc');
+var babelLoaderQuery = {};
+
+try {
+  babelLoaderQuery = JSON.parse(babelrc);
+} catch (e) {
+  console.error('Parsing .babelrc failed!');
+  throw e;
+}
+
+babelLoaderQuery.plugins = ["react-transform"];
+babelLoaderQuery.extra = {
+  "react-transform": {
+    "transforms": [{
+      "transform": "react-transform-hmr",
+      "imports": ["react"],
+      "locals": ["module"]
+    },
+      {
+        "transform": "react-transform-catch-errors",
+        "imports": ["react", "redbox-react"]
+      }]
+  }
+};
 
 module.exports = [
   {
@@ -27,7 +60,7 @@ module.exports = [
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
-      definePlugin
+      definePluginClient
     ],
     module: {
       loaders: [
@@ -36,7 +69,7 @@ module.exports = [
           include: [
             path.join(__dirname, 'src')
           ],
-          loaders: ['babel']
+          loader: 'babel?' + JSON.stringify(babelLoaderQuery)
         },
         {
           test: /\.less$/,
@@ -66,7 +99,6 @@ module.exports = [
       filename: 'serverRendering-gen.js',
       libraryTarget: "commonjs2"
     },
-
     module: {
       loaders: [
         {
@@ -74,7 +106,7 @@ module.exports = [
           include: [
             path.join(__dirname, 'src')
           ],
-          loaders: ['babel']
+          loader: 'babel'
         },
         {
           test: /\.css$/,
