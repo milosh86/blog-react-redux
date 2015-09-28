@@ -9,8 +9,9 @@ import {getRoutes} from './routes';
 import configureStore from './store/configureStore.js';
 
 
-
-export let render = function (req, res, initialData) {
+// express middleware
+export let renderAndReply = function (req, res) {
+  let initialData = req.initialData;
   let location = createLocation(req.url);
   let routes = getRoutes();
 
@@ -49,6 +50,7 @@ function renderFullPage(renderProps, initialState) {
   );
 
   const html = React.renderToString(App);
+
   // TODO: make webpack plugin that will load all css in memory ... if possible
   return `
     <!DOCTYPE html>

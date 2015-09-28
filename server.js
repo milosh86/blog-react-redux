@@ -23,12 +23,12 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.use('/static', express.static('out'));
 
-app.get('*', function (req, res) {
-  Promise.coroutine(function* () {
-    let data = yield collector.getAppData();
-    serverRendering.render(req, res, data);
-  })();
-});
+app.get('*', function (req, res, next) {
+  collector.getAppData().then(data => {
+    req.initialData = data;
+    next();
+  });
+}, serverRendering.renderAndReply);
 
 app.listen(3000, 'localhost', function (err, result) {
   if (err) {
