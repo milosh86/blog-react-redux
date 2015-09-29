@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   // Action types
   CREATE_POST: 'CREATE_POST',
   UPDATE_POST: 'UPDATE_POST',

@@ -3,11 +3,12 @@ import rootReducer from '../reducers';
 
 import {devTools, persistState} from 'redux-devtools';
 
-export default function (initialState) {
+export default function (initialState, socket) {
 
   let createStoreDev = compose(devTools())(createStore);
+  let createStoreWithMiddleware = applyMiddleware(sendToServer(socket))(createStoreDev);
 
-  const store = createStoreDev(rootReducer, initialState);
+  const store = createStoreWithMiddleware(rootReducer, initialState);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
@@ -18,4 +19,11 @@ export default function (initialState) {
   }
 
   return store;
+}
+
+let sendToServer = socket => store => next => action => {
+  if (!action.server) {
+    socket.emit('action', action);
+  }
+  next(action);
 }

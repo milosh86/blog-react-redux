@@ -59,6 +59,7 @@ function renderFullPage(renderProps, initialState) {
         <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
         <title>Blog App</title>
         <link rel="stylesheet" type="text/css" href="/static/styles.css" id="blog-server-styles" />
+        <script src="/socket.io/socket.io.js"></script>
         <style>
           body {
             font-family: "Consolas", monospace;

@@ -12,7 +12,13 @@ import hydrate from './util/hydrate.js';
 
 // if we transfer some structures that cannot be deserialized from JSON, we have to recreate/hydrate them, i.e Date or any other object with prototype
 const initialState = hydrate(window.__INITIAL_STATE__);
-const store = configureStore(initialState);
+let socket = io.connect('http://localhost:3000');
+const store = configureStore(initialState, socket);
+
+socket.on('action', data => {
+  console.log('Received action from server ...');
+  store.dispatch(data);
+});
 
 function setupClientSideRoutes() {
   return (

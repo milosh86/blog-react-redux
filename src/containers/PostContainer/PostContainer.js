@@ -16,15 +16,14 @@ class PostContainer extends Component {
       permalink: React.PropTypes.string
     }),
     posts: React.PropTypes.array.isRequired,
-    postIds: React.PropTypes.object.isRequired,
     dispatch: React.PropTypes.func.isRequired
   };
 
   onNewComment = (comment) => {
     _commentId++;
     comment.id = _commentId;
-    let {postIds, params, dispatch} = this.props;
-    dispatch(postActions.createComment({data: comment, postId: postIds[params.permalink]}));
+    let {params, dispatch} = this.props;
+    dispatch(postActions.createComment({data: comment, postId: params.permalink}));
   };
 
   render() {
@@ -46,10 +45,11 @@ function select(state) {
   return {
     posts: state.posts,
     // if posts list get large and this become expensive operation, "reselect" library offers memoized selectors, see below...
-    postIds: state.posts.reduce((acc, post) => {
-      acc[post.permalink] = post.id;
-      return acc;
-    }, {})
+    // todo: clean - permalink is used as id
+    //postIds: state.posts.reduce((acc, post) => {
+    //  acc[post.permalink] = post.id;
+    //  return acc;
+    //}, {})
   };
 }
 

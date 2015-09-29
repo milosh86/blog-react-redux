@@ -109,7 +109,7 @@ export default function posts(state = {}, action) {
     case UPDATE_COMMENT:
     case REMOVE_COMMENT:
       return state.map(post =>
-        post.id === action.postId ?
+        post.permalink === action.postId ?
           Object.assign({}, post, {comments: comments(post.comments, action)}) :
           post
       );
