@@ -20,7 +20,10 @@
 
 ## TODO
 - [x] server side rendering
-- [ ] Full website with backend for storing and handling Blog data (MongoDB or CouchDB)
+- [ ] Full website
+- [x] Backend for storing and handling Blog data (MongoDB or CouchDB)
+- [ ] Authentication for restricted services (editing content)
+- [ ] Fetching only needed data for a route, instead of the whole store
 - [ ] Webpack production config
 - [ ] Relay, Falcor?
 - [ ] Immutable.js or Mori
