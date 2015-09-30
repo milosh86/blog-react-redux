@@ -67,12 +67,12 @@ module.exports = {
   }),
 
   readPostsByTag: Promise.coroutine(function* (tag) {
-    return (yield execDbOperation('posts', 'findAsync', [{tags: tag}])).toArray();
+    return (yield execDbOperation('posts', 'findAsync', [{tags: tag}])).sort({date: 1}).toArray();
   }),
 
   readAllPosts: Promise.coroutine(function* () {
     let posts = yield execDbOperation('posts', 'findAsync', []);
-    return posts.toArray();
+    return posts.sort({date: 1}).toArray();
   }),
 
   createComment: Promise.coroutine(function* (permalink, comment) {
