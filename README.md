@@ -31,3 +31,4 @@
 - [ ] react-transform-render-visualizer - visualize component rendering
 - [ ] transit js (for transferring data structures from server to client)
 - [ ] testing (Mocha, Jasmine, Jest, ...) 
+- [ ] authentication (passport.js)
