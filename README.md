@@ -22,7 +22,7 @@
 - [x] server side rendering
 - [ ] Full website
 - [x] Backend for storing and handling Blog data (MongoDB or CouchDB)
-- [ ] Authentication for restricted services (editing content)
+- [ ] Authentication for restricted services (editing content) - passport.js
 - [ ] Fetching only needed data for a route, instead of the whole store
 - [ ] Webpack production config
 - [ ] Relay, Falcor?
@@ -31,4 +31,3 @@
 - [ ] react-transform-render-visualizer - visualize component rendering
 - [ ] transit js (for transferring data structures from server to client)
 - [ ] testing (Mocha, Jasmine, Jest, ...) 
-- [ ] authentication (passport.js)
