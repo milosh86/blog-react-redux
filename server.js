@@ -45,6 +45,7 @@ server.listen(3000, 'localhost', function (err, result) {
   console.log('Listening at http://localhost:3000');
 });
 
+// todo: implement rest service instead....
 io.on('connection', socket => {
   console.log('WebSocket connection opened...');
   socket.on('action', data => {
