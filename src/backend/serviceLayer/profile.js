@@ -13,6 +13,10 @@ function readProfile(userId) {
 }
 
 function updateProfile(userId, newData) {
+  if (!validateProfile(newData)) {
+    return Promise.reject('Invalid profile data');
+  }
+
   return dbApi.updateProfile(userId, newData);
 }
 
@@ -27,4 +31,18 @@ module.exports = {
   readProfile: readProfile,
   updateProfile: updateProfile,
   deleteProfile: deleteProfile
+}
+
+//////////////////////////////////////////////////
+
+function validateProfile(data) {
+  if (
+    data.firstName &&
+    data.lastName &&
+    data.punchLine
+  ) {
+    return true;
+  }
+
+  return false;
 }

@@ -54,8 +54,8 @@ module.exports = {
     return yield execDbOperation('posts', 'insertAsync', [post]);
   }),
 
-  updatePost: Promise.coroutine(function* (permalink, newData) {
-    return yield execDbOperation('posts', 'updateAsync', [{_id: permalink}, {$set: {body: newData}}]);
+  updatePost: Promise.coroutine(function* (newData) {
+    return yield execDbOperation('posts', 'updateAsync', [{_id: newData.permalink}, {$set: {body: newData}}]);
   }),
 
   deletePost: Promise.coroutine(function* (permalink) {

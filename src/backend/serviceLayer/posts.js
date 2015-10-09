@@ -25,8 +25,8 @@ function readAllPosts() {
   return dbApi.readAllPosts();
 }
 
-function updatePost(permalink, newData) {
-  return dbApi.updatePost(permalink, newData);
+function updatePost(newData) {
+  return dbApi.updatePost(newData);
 }
 
 function deletePost(permalink) {
