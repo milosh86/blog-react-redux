@@ -22,6 +22,8 @@ var io = require('socket.io')(server);
 
 var compiler = webpack(config[0]);
 
+app.use(bodyParser.json());
+
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config[0].output.publicPath

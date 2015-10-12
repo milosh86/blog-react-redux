@@ -3,7 +3,7 @@ var respondToClient = require('./respondToClient');
 
 // GET api/posts
 exports.getAllPosts = (req, res) => {
-  respondToClient(PostsService.readAllPosts(), res);
+  respondToClient(PostsService.readAllPosts(), res, true);
 };
 
 // POST api/posts

@@ -9,7 +9,7 @@ exports.getProfile = function getProfile(req, res) {
     return res.status(500).json({error: 'Missing userId...'});
   }
 
-  respondToClient(ProfileService.readProfile(userId), res);
+  respondToClient(ProfileService.readProfile(userId), res, true);
 };
 
 // PUT profile/userId
@@ -19,4 +19,3 @@ exports.updateProfile = (req, res) => {
 
   respondToClient(ProfileService.updateProfile(userId, newData), res);
 };
-

@@ -1,6 +1,10 @@
-module.exports = function respondToClient(promise, res) {
+module.exports = function respondToClient(promise, res, sendData) {
   promise
     .then((data) => {
+      if (!sendData) {
+        data = null;
+      }
+
       res.json(data);
     })
     .catch(error => {

@@ -2,8 +2,8 @@ var PostHandlers = require('./posts');
 var ProfileHandlers = require('./profile');
 
 module.exports = (app) => {
-  app.get('/api/profile', ProfileHandlers.getProfile);
-  app.put('/api/profile', ProfileHandlers.updateProfile);
+  app.get('/api/profile/:userId', ProfileHandlers.getProfile);
+  app.put('/api/profile/:userId', ProfileHandlers.updateProfile);
 
   app.get('/api/posts', PostHandlers.getAllPosts);
   app.post('/api/posts', PostHandlers.createPost);
