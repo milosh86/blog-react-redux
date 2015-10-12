@@ -10,4 +10,6 @@ module.exports = (app) => {
   app.put('/api/posts', PostHandlers.updatePost);
   app.delete('/api/posts/:permalink', PostHandlers.deletePost);
 
+  app.post('/api/posts/:permalink/comments', PostHandlers.createComment);
+
 };

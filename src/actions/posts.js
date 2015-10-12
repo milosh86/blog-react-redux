@@ -1,4 +1,5 @@
 import types from '../constants/BlogConstants';
+import $ from 'jquery'
 
 export function createPost(post) {
   return {
@@ -21,11 +22,35 @@ export function deletePost(postId) {
   }
 }
 
+//export function createComment(comment) {
+//  return {
+//    type: types.CREATE_COMMENT,
+//    postId: comment.postId,
+//    comment: comment.data
+//  }
+//}
+
 export function createComment(comment) {
-  return {
-    type: types.CREATE_COMMENT,
-    postId: comment.postId,
-    comment: comment.data
+  return dispatch => {
+    dispatch({
+      type: types.CREATE_COMMENT,
+      postId: comment.postId,
+      comment: comment.data
+    });
+
+    $.post(`http://localhost:3000/api/posts/${comment.postId}/comments`, {comment: comment.data}).done(() => {
+      dispatch({
+        type: types.CREATING_COMMENT_DONE,
+        postId: comment.postId,
+        comment: comment.data
+      });
+    }).fail(() => {
+      dispatch({
+        type: types.CREATING_COMMENT_FAILED,
+        postId: comment.postId,
+        comment: comment.data
+      });
+    });
   }
 }
 

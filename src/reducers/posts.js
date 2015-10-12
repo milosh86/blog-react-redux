@@ -1,4 +1,5 @@
-import {CREATE_POST, UPDATE_POST, REMOVE_POST, CREATE_COMMENT, UPDATE_COMMENT, REMOVE_COMMENT} from '../constants/BlogConstants';
+//import {CREATE_POST, UPDATE_POST, REMOVE_POST, CREATE_COMMENT, UPDATE_COMMENT, REMOVE_COMMENT} from '../constants/BlogConstants';
+import BlogConstants from '../constants/BlogConstants';
 
 let someDate = new Date;
 someDate.setMonth(1);
@@ -69,16 +70,36 @@ const initialState = [
 
 function comments(state = [], action) {
   switch (action.type) {
-    case CREATE_COMMENT:
-      return [...state, action.comment];
+    case BlogConstants.CREATE_COMMENT:
+      return [...state, Object.assign(action.comment, {status: 'pending'})];
 
-    case UPDATE_COMMENT:
+    case BlogConstants.CREATING_COMMENT_DONE:
+      return state.map((comment => {
+        if (comment.author === action.comment.author &&
+          comment.body === action.comment.body) {
+          return Object.assign(comment, {status: 'done'})
+        }
+
+        return comment;
+      }));
+
+    case BlogConstants.CREATING_COMMENT_FAILED:
+      return state.map((comment => {
+        if (comment.author === action.comment.author &&
+          comment.body === action.comment.body) {
+          return Object.assign(comment, {status: 'failed'})
+        }
+
+        return comment;
+      }));
+
+    case BlogConstants.UPDATE_COMMENT:
       return state.map(comment =>
         comment.id === action.data.id ?
           Object.assign({}, comment, action.data) :
           comment);
 
-    case DELETE_COMMENT:
+    case BlogConstants.DELETE_COMMENT:
       return state.filter(comment => comment.id !== action.commentId);
 
     default:
@@ -88,26 +109,28 @@ function comments(state = [], action) {
 
 export default function posts(state = {}, action) {
   switch (action.type) {
-    case CREATE_POST:
+    case BlogConstants.CREATE_POST:
       return [...state, {
         ...action.post,
         permalink: action.post.title.replace(/\s/g, '-'),
         comments: []
       }];
 
-    case UPDATE_POST:
+    case BlogConstants.UPDATE_POST:
       return state.map(post =>
         post.id === action.id ?
           Object.assign({}, post, action.data) :
           post
       );
 
-    case REMOVE_POST:
+    case BlogConstants.REMOVE_POST:
       return state.filter(post => post.id !== action.id);
 
-    case CREATE_COMMENT:
-    case UPDATE_COMMENT:
-    case REMOVE_COMMENT:
+    case BlogConstants.CREATE_COMMENT:
+    case BlogConstants.UPDATE_COMMENT:
+    case BlogConstants.REMOVE_COMMENT:
+    case BlogConstants.CREATING_COMMENT_DONE:
+    case BlogConstants.CREATING_COMMENT_FAILED:
       return state.map(post =>
         post.permalink === action.postId ?
           Object.assign({}, post, {comments: comments(post.comments, action)}) :

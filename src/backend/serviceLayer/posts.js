@@ -36,7 +36,11 @@ function deletePost(permalink) {
 //////////////////////////////////////////////////
 
 function createComment(permalink, comment) {
-  return dbApi.createComment(permalink, comment);
+  return new Promise(function(resolve, reject) {
+    setTimeout(function () {
+      return dbApi.createComment(permalink, comment).then(resolve).catch(reject);
+    }, 2000);
+  });
 }
 
 function updateComment(permalink, newData) {

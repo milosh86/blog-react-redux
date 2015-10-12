@@ -1,4 +1,5 @@
 import {applyMiddleware, compose, createStore} from 'redux';
+import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
 import {devTools, persistState} from 'redux-devtools';
@@ -6,7 +7,7 @@ import {devTools, persistState} from 'redux-devtools';
 export default function (initialState, socket) {
 
   let createStoreDev = compose(devTools())(createStore);
-  let createStoreWithMiddleware = applyMiddleware(sendToServer(socket))(createStoreDev);
+  let createStoreWithMiddleware = applyMiddleware(thunk, sendToServer(socket))(createStoreDev);
 
   const store = createStoreWithMiddleware(rootReducer, initialState);
 

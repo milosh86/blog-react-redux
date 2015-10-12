@@ -21,7 +21,7 @@ module.exports = function (action) {
     //  break;
 
     case BlogActions.CREATE_COMMENT:
-      posts.createComment(action.postId, action.comment);
+      //posts.createComment(action.postId, action.comment);
       break;
 
     default:

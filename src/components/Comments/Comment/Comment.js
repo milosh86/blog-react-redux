@@ -18,7 +18,10 @@ class Comment extends Component {
           <div className="comment-header--author">{this.props.author}</div>
           <div className="comment-header--date">{moment(this.props.date).fromNow()}</div>
         </div>
-        <div className="blog-comment--body">{this.props.body}</div>
+        <div className="blog-comment--body">
+          <div>Status: {this.props.status}</div>
+          {this.props.body}
+        </div>
       </div>
     );
   }
