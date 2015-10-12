@@ -9,6 +9,8 @@ var config = require('./webpack.config');
 var serverRendering = require('./out/serverRendering-gen');
 var collector = require('./src/backend/serviceLayer/collector.js');
 var actionHandler = require('./src/backend/actionHandler');
+var setAPIRoutes = require('./src/backend/routeHandlers');
+
 var Promise = require('bluebird');
 
 ///////////////////////////////////////////////////////////////////
@@ -28,6 +30,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.use('/static', express.static('out'));
+
+setAPIRoutes(app);
 
 app.get('*', function (req, res, next) {
   collector.getAppData().then(data => {

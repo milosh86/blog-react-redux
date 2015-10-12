@@ -1,47 +1,28 @@
 var PostsService = require('../serviceLayer/posts');
+var respondToClient = require('./respondToClient');
 
 // GET api/posts
 exports.getAllPosts = (req, res) => {
-  PostsService.readAllPosts().then((posts) => {
-    res.json(posts);
-  });
+  respondToClient(PostsService.readAllPosts(), res);
 };
 
 // POST api/posts
 exports.createPost = (req, res) => {
   var post = req.body.post;
 
-  PostsService.createPost(post)
-    .then(() => {
-      res.json({error: null});
-    })
-    .catch((error) => {
-      res.json({error: error});
-    });
+  respondToClient(PostsService.createPost(post), res);
 };
 
 // PUT api/posts
 exports.updatePost = (req, res) => {
   var post = req.body.post;
 
-  PostsService.updatePost(post)
-    .then(() => {
-      res.json({error: null});
-    })
-    .catch((error) => {
-      res.json({error: error});
-    });
+  respondToClient(PostsService.updatePost(post), res);
 };
 
 // DELETE api/posts/:permalink
 exports.deletePost = (req, res) => {
   var permalink = req.params.permalink;
 
-  PostsService.deletePost(permalink)
-    .then(() => {
-      res.json({error: null});
-    })
-    .catch((error) => {
-      res.json({error: error});
-    });
+  respondToClient(PostsService.deletePost(permalink), res);
 };

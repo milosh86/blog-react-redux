@@ -1,12 +1,15 @@
 var ProfileService = require('../serviceLayer/profile');
+var respondToClient = require('./respondToClient');
 
 // GET profile/userId
 exports.getProfile = function getProfile(req, res) {
   var userId = req.params.userId;
 
-  ProfileService.readProfile(userId).then(profile =>{
-    res.json(profile);
-  });
+  if (!userId) {
+    return res.status(500).json({error: 'Missing userId...'});
+  }
+
+  respondToClient(ProfileService.readProfile(userId), res);
 };
 
 // PUT profile/userId
@@ -14,11 +17,6 @@ exports.updateProfile = (req, res) => {
   var userId = req.params.userId;
   var newData = req.body.profile;
 
-  ProfileService.updateProfile(userId, newData)
-    .then(() => {
-      res.json({error: null});
-    })
-  .catch(error => {
-      res.json({error: error});
-    });
+  respondToClient(ProfileService.updateProfile(userId, newData), res);
 };
+
