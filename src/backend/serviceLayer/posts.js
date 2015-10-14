@@ -47,8 +47,8 @@ function updateComment(permalink, newData) {
   return dbApi.createComment(permalink, newData);
 }
 
-function deleteComment(permalink, commentId) {
-  return dbApi.deleteComment(permalink, commentId);
+function deleteComment(permalink, comment) {
+  return dbApi.deleteComment(permalink, comment);
 }
 
 //////////////////////////////////////////////////

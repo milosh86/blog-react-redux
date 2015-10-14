@@ -11,5 +11,6 @@ module.exports = (app) => {
   app.delete('/api/posts/:permalink', PostHandlers.deletePost);
 
   app.post('/api/posts/:permalink/comments', PostHandlers.createComment);
+  app.delete('/api/posts/:permalink/comments', PostHandlers.deleteComment);
 
 };

@@ -1,30 +1,31 @@
-import types from '../constants/BlogConstants';
-import $ from 'jquery'
+import ActionTypes from '../constants/BlogConstants';
+import $ from 'jquery';
+import config from '../../config';
 
 export function createPost(post) {
   return {
-    type: types.CREATE_POST,
+    type: ActionTypes.CREATE_POST,
     post
   }
 }
 
 export function updatePost(data) {
   return {
-    type: types.UPDATE_POST,
+    type: ActionTypes.UPDATE_POST,
     data
   }
 }
 
 export function deletePost(postId) {
   return {
-    type: types.REMOVE_POST,
+    type: ActionTypes.REMOVE_POST,
     id: postId
   }
 }
 
 //export function createComment(comment) {
 //  return {
-//    type: types.CREATE_COMMENT,
+//    type: ActionTypes.CREATE_COMMENT,
 //    postId: comment.postId,
 //    comment: comment.data
 //  }
@@ -33,30 +34,37 @@ export function deletePost(postId) {
 export function createComment(comment) {
   return dispatch => {
     dispatch({
-      type: types.CREATE_COMMENT,
+      type: ActionTypes.CREATING_COMMENT,
       postId: comment.postId,
       comment: comment.data
     });
 
-    $.post(`http://localhost:3000/api/posts/${comment.postId}/comments`, {comment: comment.data}).done(() => {
-      dispatch({
-        type: types.CREATING_COMMENT_DONE,
-        postId: comment.postId,
-        comment: comment.data
+    $.ajax({
+      url: `${config.server}/api/posts/${comment.postId}/comments`,
+      method: 'POST',
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify({comment: comment.data})
+    })
+      .done(() => {
+        dispatch({
+          type: ActionTypes.CREATING_COMMENT_DONE,
+          postId: comment.postId,
+          comment: comment.data
+        });
+      })
+      .fail(() => {
+        dispatch({
+          type: ActionTypes.CREATING_COMMENT_FAILED,
+          postId: comment.postId,
+          comment: comment.data
+        });
       });
-    }).fail(() => {
-      dispatch({
-        type: types.CREATING_COMMENT_FAILED,
-        postId: comment.postId,
-        comment: comment.data
-      });
-    });
   }
 }
 
 export function updateComment(comment) {
   return {
-    type: types.UPDATE_COMMENT,
+    type: ActionTypes.UPDATE_COMMENT,
     data: comment.data,
     postId: comment.postId,
     commentId: comment.commentId
@@ -64,9 +72,19 @@ export function updateComment(comment) {
 }
 
 export function deleteComment(comment) {
-  return {
-    type: types.REMOVE_COMMENT,
-    commentId: comment.commentId,
-    postId: comment.postId
+  return dispatch => {
+    dispatch({
+      type: ActionTypes.REMOVE_COMMENT,
+      author: comment.data.author,
+      body: comment.data.body,
+      postId: comment.postId
+    })
+
+    $.ajax({
+      url: `${config.server}/api/posts/${comment.postId}/comments`,
+      method: 'DELETE',
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify({comment: comment.data})
+    });
   }
 }

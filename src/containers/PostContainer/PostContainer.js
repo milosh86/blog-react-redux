@@ -19,11 +19,16 @@ class PostContainer extends Component {
     dispatch: React.PropTypes.func.isRequired
   };
 
-  onNewComment = (comment) => {
+  handleNewComment = (comment) => {
     _commentId++;
     comment.id = _commentId;
     let {params, dispatch} = this.props;
     dispatch(postActions.createComment({data: comment, postId: params.permalink}));
+  };
+
+  handleDeleteComment = (comment) => {
+    let {params, dispatch} = this.props;
+    dispatch(postActions.deleteComment({data: comment, postId: params.permalink}));
   };
 
   render() {
@@ -34,7 +39,8 @@ class PostContainer extends Component {
        post.length ?
          <Post
            onPostClick={(perma) => Post.onPostClick(history, perma)}
-           onNewComment={(comment) => this.onNewComment(comment)}
+           onNewComment={this.handleNewComment}
+           onDeleteComment={this.handleDeleteComment}
            {...post[0]}/> :
          <div>'Could not find requested post'</div>
     );

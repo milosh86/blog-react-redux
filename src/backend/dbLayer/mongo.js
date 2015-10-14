@@ -91,13 +91,14 @@ module.exports = {
     ]);
   }),
 
-  deleteComment: Promise.coroutine(function* (permalink, commentId) {
+  deleteComment: Promise.coroutine(function* (permalink, comment) {
     return yield execDbOperation('posts', 'updateAsync',
       [{_id: permalink},
         {
           $pull: {
             comments: {
-              _id: commentId
+              author: comment.author,
+              body: comment.body
             }
           }
         }]

@@ -20,10 +20,6 @@ module.exports = function (action) {
     //  posts.deletePost(action.id);
     //  break;
 
-    case BlogActions.CREATE_COMMENT:
-      //posts.createComment(action.postId, action.comment);
-      break;
-
     default:
       console.log('Unknown action received: ', action);
 

@@ -70,7 +70,7 @@ const initialState = [
 
 function comments(state = [], action) {
   switch (action.type) {
-    case BlogConstants.CREATE_COMMENT:
+    case BlogConstants.CREATING_COMMENT:
       return [...state, Object.assign(action.comment, {status: 'pending'})];
 
     case BlogConstants.CREATING_COMMENT_DONE:
@@ -99,8 +99,8 @@ function comments(state = [], action) {
           Object.assign({}, comment, action.data) :
           comment);
 
-    case BlogConstants.DELETE_COMMENT:
-      return state.filter(comment => comment.id !== action.commentId);
+    case BlogConstants.REMOVE_COMMENT:
+      return state.filter(comment => comment.body !== action.body);
 
     default:
       return state;
@@ -126,7 +126,7 @@ export default function posts(state = {}, action) {
     case BlogConstants.REMOVE_POST:
       return state.filter(post => post.id !== action.id);
 
-    case BlogConstants.CREATE_COMMENT:
+    case BlogConstants.CREATING_COMMENT:
     case BlogConstants.UPDATE_COMMENT:
     case BlogConstants.REMOVE_COMMENT:
     case BlogConstants.CREATING_COMMENT_DONE:

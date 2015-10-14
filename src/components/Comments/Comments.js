@@ -13,11 +13,12 @@ class Comments extends Component {
         date: PropTypes.instanceOf(Date),
         body: PropTypes.string
       })).isRequired,
-    onNewComment: React.PropTypes.func.isRequired
+    onNewComment: React.PropTypes.func.isRequired,
+    onDeleteComment: React.PropTypes.func.isRequired
   };
 
   render() {
-    let comments = this.props.comments.map(comment => <Comment {...comment} />);
+    let comments = this.props.comments.map(comment => <Comment {...comment} onDeleteComment={this.props.onDeleteComment} />);
 
     return (
       <div className="blog-comments">

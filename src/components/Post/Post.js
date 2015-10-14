@@ -23,6 +23,7 @@ class Post extends Component {
     ),
     onPostClick: PropTypes.func.isRequired,
     onNewComment: PropTypes.func.isRequired,
+    onDeleteComment: PropTypes.func.isRequired,
     short: PropTypes.bool.isRequired
   };
 
@@ -41,7 +42,8 @@ class Post extends Component {
         <div className="blog-post--comments">
           <Comments
             comments={this.props.comments}
-            onNewComment={this.props.onNewComment} />
+            onNewComment={this.props.onNewComment}
+            onDeleteComment={this.props.onDeleteComment}/>
         </div>;
     }
 

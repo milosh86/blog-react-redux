@@ -33,3 +33,10 @@ exports.createComment = (req, res) => {
   var permalink = req.params.permalink;
   respondToClient(PostsService.createComment(permalink, comment), res);
 };
+
+// DELETE api/posts/:permalink/comments
+exports.deleteComment = (req, res) => {
+  var comment = req.body.comment;
+  var permalink = req.params.permalink;
+  respondToClient(PostsService.deleteComment(permalink, comment), res);
+};

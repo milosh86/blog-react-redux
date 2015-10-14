@@ -8,7 +8,8 @@ class Comment extends Component {
   static propTypes = {
     author: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date).isRequired,
-    body: PropTypes.string.isRequired
+    body: PropTypes.string.isRequired,
+    onDeleteComment: PropTypes.func.isRequired
   };
 
   render() {
@@ -20,6 +21,7 @@ class Comment extends Component {
         </div>
         <div className="blog-comment--body">
           <div>Status: {this.props.status}</div>
+          <div onClick={() => this.props.onDeleteComment({author: this.props.author, body: this.props.body})}>Delete</div>
           {this.props.body}
         </div>
       </div>
