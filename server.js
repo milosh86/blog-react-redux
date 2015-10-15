@@ -16,9 +16,6 @@ var Promise = require('bluebird');
 ///////////////////////////////////////////////////////////////////
 
 var app = express();
-var http = require('http');
-var server = http.Server(app);
-var io = require('socket.io')(server);
 
 var compiler = webpack(config[0]);
 
@@ -43,22 +40,10 @@ app.get('*', function (req, res, next) {
 }, serverRendering.renderAndReply);
 
 
-server.listen(3000, 'localhost', function (err, result) {
+app.listen(3000, 'localhost', function (err, result) {
   if (err) {
     console.log(err);
   }
 
   console.log('Listening at http://localhost:3000');
-});
-
-// todo: implement rest service instead....
-io.on('connection', socket => {
-  console.log('WebSocket connection opened...');
-  socket.on('action', data => {
-    console.log('Received action: ' + JSON.stringify(data, 2, 2));
-    actionHandler(data);
-    // send to other clients
-    data.server = true;
-    socket.broadcast.emit('action', data);
-  });
 });

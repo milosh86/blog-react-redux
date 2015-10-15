@@ -4,10 +4,10 @@ import rootReducer from '../reducers';
 
 import {devTools, persistState} from 'redux-devtools';
 
-export default function (initialState, socket) {
+export default function (initialState) {
 
   let createStoreDev = compose(devTools())(createStore);
-  let createStoreWithMiddleware = applyMiddleware(thunk, sendToServer(socket))(createStoreDev);
+  let createStoreWithMiddleware = applyMiddleware(thunk)(createStoreDev);
 
   const store = createStoreWithMiddleware(rootReducer, initialState);
 
@@ -20,11 +20,4 @@ export default function (initialState, socket) {
   }
 
   return store;
-}
-
-let sendToServer = socket => store => next => action => {
-  if (!action.server) {
-    socket.emit('action', action);
-  }
-  next(action);
 }

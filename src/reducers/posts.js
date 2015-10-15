@@ -71,7 +71,7 @@ const initialState = [
 function comments(state = [], action) {
   switch (action.type) {
     case BlogConstants.CREATING_COMMENT:
-      return [...state, Object.assign(action.comment, {status: 'pending'})];
+      return [...state, Object.assign({}, action.comment, {status: 'pending'})];
 
     case BlogConstants.CREATING_COMMENT_DONE:
       return state.map((comment => {
