@@ -33,9 +33,16 @@ export function updatePost(data) {
 }
 
 export function deletePost(postId) {
-  return {
-    type: ActionTypes.REMOVE_POST,
-    id: postId
+  return dispatch => {
+    dispatch({
+      type: ActionTypes.REMOVE_POST,
+      id: postId
+    });
+
+    $.ajax({
+      url: `${config.server}/api/posts/${postId}`,
+      method: 'DELETE'
+    });
   }
 }
 

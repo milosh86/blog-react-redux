@@ -55,7 +55,11 @@ class Post extends Component {
         </div>
         <hr />
         <div className="blog-post--title" onClick={() => this.props.onPostClick(this.props.permalink)}>{this.props.title}</div>
-        <div className="blog-post--body">{body}</div>
+        <div className="blog-post--body">
+          <pre>
+            {body}
+          </pre>
+        </div>
         {footer}
       </div>
     );
