@@ -110,6 +110,7 @@ function comments(state = [], action) {
 export default function posts(state = {}, action) {
   switch (action.type) {
     case BlogConstants.CREATE_POST:
+    case BlogConstants.CREATE_POST_FAILED: //todo: implement fail logic
       return [...state, {
         ...action.post,
         permalink: action.post.title.replace(/\s/g, '-'),

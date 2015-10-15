@@ -8,7 +8,6 @@ var config = require('./webpack.config');
 
 var serverRendering = require('./out/serverRendering-gen');
 var collector = require('./src/backend/serviceLayer/collector.js');
-var actionHandler = require('./src/backend/actionHandler');
 var setAPIRoutes = require('./src/backend/routeHandlers');
 
 var Promise = require('bluebird');

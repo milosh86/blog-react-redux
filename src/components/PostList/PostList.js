@@ -16,7 +16,7 @@ class PostList extends Component {
         post =>
           <Post
             onPostClick={(perma) => Post.onPostClick(history, perma)}
-            key={post.id}
+            key={post.permalink}
             {...post}
             short={true} />
     );

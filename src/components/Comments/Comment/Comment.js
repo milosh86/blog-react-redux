@@ -22,7 +22,7 @@ class Comment extends Component {
         <div className="blog-comment--body">
           <div>Status: {this.props.status}</div>
           <div onClick={() => this.props.onDeleteComment({author: this.props.author, body: this.props.body})}>Delete</div>
-          {this.props.body}
+          <pre>{this.props.body}</pre>
         </div>
       </div>
     );

@@ -3,9 +3,25 @@ import $ from 'jquery';
 import config from '../../config';
 
 export function createPost(post) {
-  return {
-    type: ActionTypes.CREATE_POST,
-    post
+  return dispatch => {
+    $.ajax({
+      url: `${config.server}/api/posts`,
+      method: 'POST',
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify({post: post})
+    })
+      .done(() => {
+        dispatch({
+          type: ActionTypes.CREATE_POST,
+          post
+        });
+      })
+      .fail(() => {
+        dispatch({
+          type: ActionTypes.CREATE_POST_FAILED,
+          post
+        });
+      });
   }
 }
 
@@ -22,14 +38,6 @@ export function deletePost(postId) {
     id: postId
   }
 }
-
-//export function createComment(comment) {
-//  return {
-//    type: ActionTypes.CREATE_COMMENT,
-//    postId: comment.postId,
-//    comment: comment.data
-//  }
-//}
 
 export function createComment(comment) {
   return dispatch => {

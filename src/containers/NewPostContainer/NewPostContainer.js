@@ -5,15 +5,14 @@ import {connect} from 'react-redux';
 import * as postActions from '../../actions/posts.js';
 import history from '../../history.js';
 
-let _id = 2;
-
 class NewPostContainer extends Component {
   static displayName = 'NewPostContainer';
 
   onNewPost = (post) => {
     _id++;
-    post.id = _id;
     post.date = new Date;
+    post.permalink =  post.title.replace(/\s/g, '-');
+    post.comments = [];
     this.props.dispatch(postActions.createPost(post));
     history.pushState(null, '/');
   }
