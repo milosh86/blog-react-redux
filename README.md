@@ -4,7 +4,7 @@
 * npm start
 * navigate to http://localhost:3000
 
-##What's in?
+## What's in?
 * React components (smart/containers and dumb/stateless)
 * Redux state container + react-redux binding
 * Routing with react-router 1.0

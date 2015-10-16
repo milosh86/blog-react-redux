@@ -1,5 +1,6 @@
 import './Home.css';
 import React, {Component} from 'react';
+import {Link} from 'react-router';
 
 class Home extends Component {
 
@@ -12,19 +13,13 @@ class Home extends Component {
 
   render() {
     return (
-
       <div>
-        <div className="navigation">
-          <span>MDZ</span>
-          <span>Posts</span>
-        </div>
         <div className="aboutme">
           <div className="pic">Profile picture</div>
           <div className="intro">Couple of sentences about me</div>
           <div className="tech-list">List of technologies</div>
           <div className="contacts">Contacts</div>
         </div>
-
       </div>
     );
   }
