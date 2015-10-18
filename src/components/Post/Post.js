@@ -28,7 +28,7 @@ class Post extends Component {
   };
 
   static onPostClick(history, perma) {
-    history.pushState(null, `/post/${perma}`);
+    history.pushState(null, `/blog/post/${perma}`);
   }
 
   render() {

@@ -44,11 +44,11 @@ class Blog extends Component {
 
   onArchiveItemClick = (item) => {
     console.dir(this.props);
-    this.props.history.pushState(null, `/archive/${item.replace(' ', '-')}`);
+    this.props.history.pushState(null, `/blog/archive/${item.replace(' ', '-')}`);
   }
 
   static onCategoryItemClick(item) {
-    history.pushState(null, `/tag/${item}`);
+    history.pushState(null, `/blog/tag/${item}`);
   }
 
   render() {

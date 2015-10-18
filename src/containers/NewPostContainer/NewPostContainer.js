@@ -14,7 +14,7 @@ class NewPostContainer extends Component {
     post.permalink =  post.title.replace(/\s/g, '-');
     post.comments = [];
     this.props.dispatch(postActions.createPost(post));
-    history.pushState(null, '/');
+    history.pushState(null, '/blog');
   }
 
   render() {

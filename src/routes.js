@@ -9,7 +9,7 @@ import NotFound from './components/NotFound/NotFound.js';
 
 export function getRoutes() {
   return (
-    <Route path='/' component={BlogContainer}>
+    <Route path='/blog' component={BlogContainer}>
       <IndexRoute component={PostListContainer}/>
       <Route path="post/:permalink" component={PostContainer}/>
       <Route path="post(/)" component={NewPostContainer}/>

@@ -48,7 +48,7 @@ class PostListContainer extends Component {
     return (
       <PostList
         posts={filtered}
-        onNewPostClick={() => history.pushState(null, '/newpost/')}/>
+        onNewPostClick={() => history.pushState(null, '/blog/newpost/')}/>
     );
   }
 }
