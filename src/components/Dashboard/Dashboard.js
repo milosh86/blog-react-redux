@@ -1,9 +1,9 @@
-import './Login.css';
+import './Dashboard.css';
 import React, {Component} from 'react';
 
-class Login extends Component {
+class Dashboard extends Component {
 
-  static displayName = 'Login';
+  static displayName = 'Dashboard';
 
   static propTypes = {
     tmp: React.PropTypes.string.isRequired
@@ -15,9 +15,9 @@ class Login extends Component {
 
   render() {
     return (
-      <div>Login page...redirect back to initially requested page</div>
+      <div>Dashboard page</div>
     );
   }
 }
 
-export default Login;
+export default Dashboard;
