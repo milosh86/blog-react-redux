@@ -9,14 +9,17 @@ module.exports = {
     let allPosts = posts.readAllPosts();
     let myProfile = profile.readProfile('mdz');
 
+    allPosts = yield allPosts;
+    myProfile = yield myProfile;
+
     if (!myProfile || !allPosts) {
       console.log('profile', myProfile);
       console.log('posts', allPosts);
       throw new Error('Collecting data failed. No profile or posts data!');
     }
     return {
-      profile: yield myProfile,
-      posts: yield allPosts
+      profile: myProfile,
+      posts: allPosts
     }
   })
 };

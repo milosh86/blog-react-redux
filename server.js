@@ -11,6 +11,7 @@ var collector = require('./src/backend/serviceLayer/collector.js');
 var setAPIRoutes = require('./src/backend/routeHandlers');
 
 var Promise = require('bluebird');
+require('./auth/config')();
 
 ///////////////////////////////////////////////////////////////////
 

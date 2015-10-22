@@ -103,6 +103,12 @@ module.exports = {
           }
         }]
     );
-  })
+  }),
+
+  /////////////////////////////////////////////////////////////////////////
+
+  readUser: function (username) {
+    return execDbOperation('users', 'findOneAsync', [{_id: username}]);
+  }
 
 };
