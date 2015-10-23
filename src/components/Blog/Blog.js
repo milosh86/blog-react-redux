@@ -2,6 +2,7 @@ import './Blog.css';
 
 
 import React, {Component, PropTypes} from 'react';
+import {Link} from 'react-router';
 import history from '../../history.js';
 
 import PostList from '../PostList/PostList.js';
@@ -55,22 +56,29 @@ class Blog extends Component {
     let tags = this._extractTags();
 
     return (
-      <div className="blog">
-        <div className="blog-left-side">
-          {this.props.children || 'Blog Application'} {/*for routing*/}
+      <div>
+        <div className="blog-nav-header">
+          <span className="link"><Link to='/'>MDZ</Link></span>
+          <span className="link"><Link to='/blog'>BLOG</Link></span>
+          <span className="link"><Link to='/blog/dashboard'>DASHBOARD</Link></span>
         </div>
-        <div className="blog-right-side">
-          <Profile {...this.props.profile}/>
+        <div className="blog">
+          <div className="blog-left-side">
+            {this.props.children || 'Blog Application'} {/*for routing*/}
+          </div>
+          <div className="blog-right-side">
+            <Profile {...this.props.profile}/>
 
-          <Archives
-            title={this.props.archiveTitle}
-            onItemClick={this.onArchiveItemClick}
-            posts={this.props.posts} />
+            <Archives
+              title={this.props.archiveTitle}
+              onItemClick={this.onArchiveItemClick}
+              posts={this.props.posts}/>
 
-          <Categories
-            title={this.props.categoriesTitle}
-            onItemClick={Blog.onCategoryItemClick}
-            tags={tags} />
+            <Categories
+              title={this.props.categoriesTitle}
+              onItemClick={Blog.onCategoryItemClick}
+              tags={tags}/>
+          </div>
         </div>
       </div>
     );

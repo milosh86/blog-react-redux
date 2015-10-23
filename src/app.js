@@ -17,7 +17,8 @@ const store = configureStore(initialState);
 function setupClientSideRoutes() {
   return (
     <Router history={history}>
-      {getRoutes()}
+      {getRoutes()[0]}
+      {getRoutes()[1]}
     </Router>
   );
 }

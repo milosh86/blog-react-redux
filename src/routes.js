@@ -13,21 +13,20 @@ import Login from './components/Login/Login.js';
 import auth from './auth.js';
 
 export function getRoutes() {
-  return (
-    <div>
-      <Route path='/' component={Home} />
-      <Route path='/blog' component={BlogContainer}>
-        <IndexRoute component={PostListContainer} />
-        <Route path="post/:permalink" component={PostContainer} />
-        <Route path="post(/)" component={NewPostContainer} />
-        <Route path="newpost" component={NewPostContainer} />
-        <Route path="tag/:tag" component={PostListContainer} />
-        <Route path="archive/:month" component={PostListContainer} />
-        <Route path="dashboard" component={DashboardContainer} onEnter={auth.authorize.bind(auth)} />
-        <Route path="login" component={Login} />
-        <Route path="*" component={NotFound} />
-      </Route>
-    </div>
-  );
+  return [
+    <Route path='/' component={Home}/>,
+    <Route path='/blog' component={BlogContainer}>
+      <IndexRoute component={PostListContainer}/>
+      <Route path="post/:permalink" component={PostContainer}/>
+      <Route path="post(/)" component={NewPostContainer}/>
+      <Route path="newpost" component={NewPostContainer}/>
+      <Route path="tag/:tag" component={PostListContainer}/>
+      <Route path="archive/:month" component={PostListContainer}/>
+      <Route path="dashboard" component={DashboardContainer} onEnter={() => auth.authorize()}/>
+      <Route path="login" component={Login}/>
+      <Route path="*" component={NotFound}/>
+    </Route>
+  ];
+
 }
 

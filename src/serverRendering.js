@@ -65,42 +65,9 @@ function renderFullPage(renderProps, initialState) {
             margin: 0;
           }
 
-          .header-nav {
-            width: 100%;
-            height: 20px;
-            padding: 5px;
-            margin: 0 0 15px 0;
-            background-color: #1f95b4;
-          }
-
-          .link a {
-            color: antiquewhite;
-          }
-          a:link {
-            text-decoration: none;
-
-          }
-
-          a:visited {
-            text-decoration: none;
-          }
-
-          a:hover {
-            text-decoration: underline;
-          }
-
-          a:active {
-            text-decoration: underline;
-            color: #fff;
-          }
-
         </style>
       </head>
       <body>
-       <div class="header-nav">
-          <span class="link"><a href='/'>MDZ</a></span>
-          <span class="link"><a href='/blog'>BLOG</a></span>
-        </div>
         <div id="content">
           ${html}
         </div>
