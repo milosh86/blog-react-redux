@@ -9,7 +9,6 @@ class NewPostContainer extends Component {
   static displayName = 'NewPostContainer';
 
   onNewPost = (post) => {
-    _id++;
     post.date = new Date;
     post.permalink =  post.title.replace(/\s/g, '-');
     post.comments = [];
