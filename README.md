@@ -2,6 +2,7 @@
 ## How to run
 * npm install
 * npm start
+* mongod
 * navigate to http://localhost:3000
 
 ##What's in?
